@@ -4,13 +4,48 @@
   <subtitle><![CDATA[我只是一个路过的程序员]]></subtitle>
   <link href="http://zhenghongen.cn/atom.xml" rel="self"/>
   <link href="http://zhenghongen.cn"/>
-  <updated>2013-07-09T09:14:26.383Z</updated>
+  <updated>2013-07-09T14:10:16.540Z</updated>
   <id>http://zhenghongen.cn/</id>
   <author>
     <name><![CDATA[MoYuQi]]></name>
     <email><![CDATA[zhe.moyuqi@gmail.com]]></email>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[Hexo deploy时报"Error: spawn ENOENT"的解决办法]]></title>
+    <link href="http://zhenghongen.cn/2013/07/09/hexo-deploy-throw-error/"/>
+    <id>http://zhenghongen.cn/2013/07/09/hexo-deploy-throw-error/</id>
+    <published>2013-07-09T10:18:56.000Z</published>
+    <updated>2013-07-09T14:07:44.000Z</updated>
+    <content type="html"><![CDATA[<p>把blog从octopress转到hexo，顺便学习了一下nodejs。<br />
+在进行deploy时，抛出了如下异常：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre>Clearing
+Copying files from <span class="keyword">public</span> folder.
+
+events<span class="variable">.js</span>:<span class="number">72</span>
+        <span class="keyword">throw</span> er; <span class="comment">// Unhandled 'error' event</span>
+              ^
+Error: spawn ENOENT
+    at errnoException (child_process<span class="variable">.js</span>:<span class="number">980</span>:<span class="number">11</span>)
+    at Process<span class="variable">.ChildProcess</span><span class="variable">._handle</span><span class="variable">.onexit</span> (child_process<span class="variable">.js</span>:<span class="number">771</span>:<span class="number">34</span>)
+</pre></td></tr></table></figure>
+
+<p>通过google &quot;hexo child_process&quot;后，在 hexo 项目的 issue中找到了  <a href="https://github.com/tommy351/hexo/issues/156">#156</a> 中找到了解决办法。<br />
+原因是：</p>
+<blockquote>
+<p>我在cmd中敲命令导致无法上传github，改为在git bash中deploy 后正常。因为可能当初装git时只使用 git bash，导致cmd中无法使用git命令。</p>
+</blockquote>
+]]></content>
+  </entry>
   <entry>
     <title type="html"><![CDATA[应用的Session冲突]]></title>
     <link href="http://zhenghongen.cn/2012/12/26/application-session-conflict/"/>

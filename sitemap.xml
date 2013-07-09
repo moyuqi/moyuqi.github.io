@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://zhenghongen.cn/about-me/index.html</loc>
-    <lastmod>2013-07-08T11:30:47.000Z</lastmod>
+    <loc>http://zhenghongen.cn/2013/07/09/hexo-deploy-throw-error/</loc>
+    <lastmod>2013-07-09T14:07:44.000Z</lastmod>
   </url>
   <url>
-    <loc>http://zhenghongen.cn/2012/12/26/application-session-conflict/</loc>
-    <lastmod>2013-07-08T01:53:06.000Z</lastmod>
+    <loc>http://zhenghongen.cn/about-me/index.html</loc>
+    <lastmod>2013-07-08T11:30:47.000Z</lastmod>
   </url>
   <url>
     <loc>http://zhenghongen.cn/2012/04/28/20-ji-sui-chi-mi-yu-ren-mai-ba-reading-notes/</loc>
@@ -66,6 +66,10 @@
   </url>
   <url>
     <loc>http://zhenghongen.cn/2012/08/23/wo-shi-wo-de-ping-heng-nv-wang-reading-notes/</loc>
+    <lastmod>2013-07-08T01:53:06.000Z</lastmod>
+  </url>
+  <url>
+    <loc>http://zhenghongen.cn/2012/12/26/application-session-conflict/</loc>
     <lastmod>2013-07-08T01:53:06.000Z</lastmod>
   </url>
   <url>

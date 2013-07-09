@@ -58,6 +58,64 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-07-09T10:18:56.000Z"><a href="/2013/07/09/hexo-deploy-throw-error/">2013 7月 9</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/07/09/hexo-deploy-throw-error/">Hexo deploy时报&quot;Error: spawn ENOENT&quot;的解决办法</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>把blog从octopress转到hexo，顺便学习了一下nodejs。<br />
+在进行deploy时，抛出了如下异常：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre>Clearing
+Copying files from <span class="keyword">public</span> folder.
+
+events<span class="variable">.js</span>:<span class="number">72</span>
+        <span class="keyword">throw</span> er; <span class="comment">// Unhandled 'error' event</span>
+              ^
+Error: spawn ENOENT
+    at errnoException (child_process<span class="variable">.js</span>:<span class="number">980</span>:<span class="number">11</span>)
+    at Process<span class="variable">.ChildProcess</span><span class="variable">._handle</span><span class="variable">.onexit</span> (child_process<span class="variable">.js</span>:<span class="number">771</span>:<span class="number">34</span>)
+</pre></td></tr></table></figure>
+
+<p>通过google &quot;hexo child_process&quot;后，在 hexo 项目的 issue中找到了  <a href="https://github.com/tommy351/hexo/issues/156">#156</a> 中找到了解决办法。<br />
+原因是：</p>
+<blockquote>
+<p>我在cmd中敲命令导致无法上传github，改为在git bash中deploy 后正常。因为可能当初装git时只使用 git bash，导致cmd中无法使用git命令。</p>
+</blockquote>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2012-12-26T07:09:23.000Z"><a href="/2012/12/26/application-session-conflict/">2012 12月 26</a></time>
       
       
@@ -403,49 +461,6 @@ P96 这场比赛已经结束了！如果只是说为了这场比赛痛苦是没�
         
           <div class="alignleft">
             <a href="/2012/04/28/20-ji-sui-chi-mi-yu-ren-mai-ba-reading-notes/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-03-18T05:22:55.000Z"><a href="/2012/03/18/shui-tou-zou-le-wo-de-shi-jian-reading-notes/">2012 3月 18</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/03/18/shui-tou-zou-le-wo-de-shi-jian-reading-notes/">《谁偷走了我的时间？》读书笔记</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>前言
-。成功的时间管理取决于正确的态度、持之以恒的决心，而不是靠精湛的技巧或是哗众取宠的方法。
-第一章
-P5不论时间流逝得快还是慢，我们都不能把它截住，不能把它储存起来，但我们可以有意义地、积极地利用它。
-切记：今天是你余生开始的第一天！
-P8抽点儿时间
-。抽点时间工作，这是成功的代价。
-。抽点时间思考，这是力量的源泉。
-。抽点儿时间娱乐，这是年轻的秘诀。
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/03/18/shui-tou-zou-le-wo-de-shi-jian-reading-notes/#more" class="more-link">Read More</a>
           </div>
         
         
