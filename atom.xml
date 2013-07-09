@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我只是一个路过的程序员]]></subtitle>
   <link href="http://zhenghongen.cn/atom.xml" rel="self"/>
   <link href="http://zhenghongen.cn"/>
-  <updated>2013-07-09T14:10:16.540Z</updated>
+  <updated>2013-07-09T14:12:15.185Z</updated>
   <id>http://zhenghongen.cn/</id>
   <author>
     <name><![CDATA[MoYuQi]]></name>
@@ -15,8 +15,8 @@
     <title type="html"><![CDATA[Hexo deploy时报"Error: spawn ENOENT"的解决办法]]></title>
     <link href="http://zhenghongen.cn/2013/07/09/hexo-deploy-throw-error/"/>
     <id>http://zhenghongen.cn/2013/07/09/hexo-deploy-throw-error/</id>
-    <published>2013-07-09T10:18:56.000Z</published>
-    <updated>2013-07-09T14:07:44.000Z</updated>
+    <published>2013-07-09T14:30:56.000Z</published>
+    <updated>2013-07-09T14:12:08.000Z</updated>
     <content type="html"><![CDATA[<p>把blog从octopress转到hexo，顺便学习了一下nodejs。<br />
 在进行deploy时，抛出了如下异常：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
