@@ -4,13 +4,46 @@
   <subtitle><![CDATA[我只是一个路过的程序员]]></subtitle>
   <link href="http://zhenghongen.cn/atom.xml" rel="self"/>
   <link href="http://zhenghongen.cn"/>
-  <updated>2013-07-09T14:12:15.185Z</updated>
+  <updated>2013-07-14T15:01:22.815Z</updated>
   <id>http://zhenghongen.cn/</id>
   <author>
     <name><![CDATA[MoYuQi]]></name>
     <email><![CDATA[zhe.moyuqi@gmail.com]]></email>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[在WebStorm中启动MongoDB]]></title>
+    <link href="http://zhenghongen.cn/2013/07/14/in-webstorm-startup-mongodb/"/>
+    <id>http://zhenghongen.cn/2013/07/14/in-webstorm-startup-mongodb/</id>
+    <published>2013-07-14T14:27:41.000Z</published>
+    <updated>2013-07-14T15:00:39.000Z</updated>
+    <content type="html"><![CDATA[<p>最近刚好找到一个学nodejs的教程是教<a href="https://github.com/nswbmw/N-blog/wiki/_pages">如何用nodejs和mongodb搭建博客的</a>。教程通俗易懂，能快速了解nodejs和mongodb。</p>
+<p>呵呵，前奏说的有点长。</p>
+<p>学习mongodb都知道启动mongodb时需要打开 cmd，切换到 \mongodb\bin 目录下，在命令行中输入 mongod -dbpath &quot;数据库路径&quot; 设置 某个文件夹作为我们工程的存储目录，这样数据库就成功启动了。</p>
+<p>省事的做法就是直接创建一个bat文件，并写入<code>d:\mongodb\bin\mongod.exe -dbpath d:\mongodb\blog</code> ，这样我们以后只需要运行这个bat就能启动数据库了 。</p>
+<p>我平常的开发工具是WebStorm，如果按照上面的做法还需要切出去启动一下，觉得挺麻烦的。尝试在开发工具中配置命令直接启动，最好还配个快捷键更方便了。</p>
+<p>经过研究，终于知道方法了：</p>
+<a name="more"></a>
+
+<ol>
+<li>第一步:</li>
+</ol>
+<p>在工程跟路径下创建mongodb.bat，输入<code>D:\DevTools\mongodb\bin\mongod.exe -dbpath F:\NodeJsProjects\webstorm\blogdb</code></p>
+<ol>
+<li>第二步：</li>
+</ol>
+<p>打开settings-&gt; External Tools,点+号，在tool setting里填空：</p>
+<p><img src="/images/in-webstorm-startup-mongodb-setting.png" alt="mongdb设置"></p>
+<p>说明：</p>
+<p>关于$ProjectFileDir$等参数可以点右边的insert macro查看详细说明。</p>
+<p>3.最后给这个命令起个名字，比方叫mongodb，保存关闭。</p>
+<p>在顶部菜单找到tools就可以看到刚保存的比方叫mongodb。点击它后就启动monggodb啦~</p>
+<p><img src="/images/in-webstorm-startup-mongodb-show.png" alt="mongdb设置结果"></p>
+]]></content>
+    <category scheme="http://zhenghongen.cn/tags/WebStorm/" term="WebStorm"/>
+    <category scheme="http://zhenghongen.cn/tags/MongoDB/" term="MongoDB"/>
+    <category scheme="http://zhenghongen.cn/categories/软件技巧/" term="软件技巧"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[Hexo deploy时报"Error: spawn ENOENT"的解决办法]]></title>
     <link href="http://zhenghongen.cn/2013/07/09/hexo-deploy-throw-error/"/>
