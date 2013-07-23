@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我只是一个路过的程序员]]></subtitle>
   <link href="http://zhenghongen.cn/atom.xml" rel="self"/>
   <link href="http://zhenghongen.cn"/>
-  <updated>2013-07-14T15:01:22.815Z</updated>
+  <updated>2013-07-23T01:32:36.114Z</updated>
   <id>http://zhenghongen.cn/</id>
   <author>
     <name><![CDATA[MoYuQi]]></name>
@@ -16,7 +16,7 @@
     <link href="http://zhenghongen.cn/2013/07/14/in-webstorm-startup-mongodb/"/>
     <id>http://zhenghongen.cn/2013/07/14/in-webstorm-startup-mongodb/</id>
     <published>2013-07-14T14:27:41.000Z</published>
-    <updated>2013-07-14T15:00:39.000Z</updated>
+    <updated>2013-07-23T01:32:20.000Z</updated>
     <content type="html"><![CDATA[<p>最近刚好找到一个学nodejs的教程是教<a href="https://github.com/nswbmw/N-blog/wiki/_pages">如何用nodejs和mongodb搭建博客的</a>。教程通俗易懂，能快速了解nodejs和mongodb。</p>
 <p>呵呵，前奏说的有点长。</p>
 <p>学习mongodb都知道启动mongodb时需要打开 cmd，切换到 \mongodb\bin 目录下，在命令行中输入 mongod -dbpath &quot;数据库路径&quot; 设置 某个文件夹作为我们工程的存储目录，这样数据库就成功启动了。</p>
@@ -33,12 +33,12 @@
 <li>第二步：</li>
 </ol>
 <p>打开settings-&gt; External Tools,点+号，在tool setting里填空：</p>
-<p><img src="/images/in-webstorm-startup-mongodb-setting.png" alt="mongdb设置"></p>
+<p><img src="/images/2013/0714/in-webstorm-startup-mongodb-setting.png" alt="mongdb设置"></p>
 <p>说明：</p>
 <p>关于$ProjectFileDir$等参数可以点右边的insert macro查看详细说明。</p>
 <p>3.最后给这个命令起个名字，比方叫mongodb，保存关闭。</p>
 <p>在顶部菜单找到tools就可以看到刚保存的比方叫mongodb。点击它后就启动monggodb啦~</p>
-<p><img src="/images/in-webstorm-startup-mongodb-show.png" alt="mongdb设置结果"></p>
+<p><img src="/images/2013/0714/in-webstorm-startup-mongodb-show.png" alt="mongdb设置结果"></p>
 ]]></content>
     <category scheme="http://zhenghongen.cn/tags/WebStorm/" term="WebStorm"/>
     <category scheme="http://zhenghongen.cn/tags/MongoDB/" term="MongoDB"/>
