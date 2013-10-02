@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我只是一个路过的程序员]]></subtitle>
   <link href="http://zhenghongen.cn/atom.xml" rel="self"/>
   <link href="http://zhenghongen.cn"/>
-  <updated>2013-07-23T01:32:36.114Z</updated>
+  <updated>2013-10-02T05:19:52.654Z</updated>
   <id>http://zhenghongen.cn/</id>
   <author>
     <name><![CDATA[MoYuQi]]></name>
@@ -17,13 +17,13 @@
     <id>http://zhenghongen.cn/2013/07/14/in-webstorm-startup-mongodb/</id>
     <published>2013-07-14T14:27:41.000Z</published>
     <updated>2013-07-23T01:32:20.000Z</updated>
-    <content type="html"><![CDATA[<p>最近刚好找到一个学nodejs的教程是教<a href="https://github.com/nswbmw/N-blog/wiki/_pages">如何用nodejs和mongodb搭建博客的</a>。教程通俗易懂，能快速了解nodejs和mongodb。</p>
+    <content type="html"><![CDATA[<p>最近刚好找到一个学nodejs的教程是教<a href="https://github.com/nswbmw/N-blog/wiki/_pages" target="_blank">如何用nodejs和mongodb搭建博客的</a>。教程通俗易懂，能快速了解nodejs和mongodb。</p>
 <p>呵呵，前奏说的有点长。</p>
-<p>学习mongodb都知道启动mongodb时需要打开 cmd，切换到 \mongodb\bin 目录下，在命令行中输入 mongod -dbpath &quot;数据库路径&quot; 设置 某个文件夹作为我们工程的存储目录，这样数据库就成功启动了。</p>
+<p>学习mongodb都知道启动mongodb时需要打开 cmd，切换到 \mongodb\bin 目录下，在命令行中输入 mongod -dbpath “数据库路径” 设置 某个文件夹作为我们工程的存储目录，这样数据库就成功启动了。</p>
 <p>省事的做法就是直接创建一个bat文件，并写入<code>d:\mongodb\bin\mongod.exe -dbpath d:\mongodb\blog</code> ，这样我们以后只需要运行这个bat就能启动数据库了 。</p>
 <p>我平常的开发工具是WebStorm，如果按照上面的做法还需要切出去启动一下，觉得挺麻烦的。尝试在开发工具中配置命令直接启动，最好还配个快捷键更方便了。</p>
 <p>经过研究，终于知道方法了：</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <ol>
 <li>第一步:</li>
@@ -50,8 +50,7 @@
     <id>http://zhenghongen.cn/2013/07/09/hexo-deploy-throw-error/</id>
     <published>2013-07-09T14:30:56.000Z</published>
     <updated>2013-07-09T14:12:08.000Z</updated>
-    <content type="html"><![CDATA[<p>把blog从octopress转到hexo，顺便学习了一下nodejs。<br />
-在进行deploy时，抛出了如下异常：</p>
+    <content type="html"><![CDATA[<p>把blog从octopress转到hexo，顺便学习了一下nodejs。<br /><br>在进行deploy时，抛出了如下异常：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -72,8 +71,7 @@ Error: spawn ENOENT
     at Process<span class="variable">.ChildProcess</span><span class="variable">._handle</span><span class="variable">.onexit</span> (child_process<span class="variable">.js</span>:<span class="number">771</span>:<span class="number">34</span>)
 </pre></td></tr></table></figure>
 
-<p>通过google &quot;hexo child_process&quot;后，在 hexo 项目的 issue中找到了  <a href="https://github.com/tommy351/hexo/issues/156">#156</a> 中找到了解决办法。<br />
-原因是：</p>
+<p>通过google &quot;hexo child_process&quot;后，在 hexo 项目的 issue中找到了  <a href="https://github.com/tommy351/hexo/issues/156" target="_blank">#156</a> 中找到了解决办法。<br /><br>原因是：</p>
 <blockquote>
 <p>我在cmd中敲命令导致无法上传github，改为在git bash中deploy 后正常。因为可能当初装git时只使用 git bash，导致cmd中无法使用git命令。</p>
 </blockquote>
@@ -86,103 +84,7 @@ Error: spawn ENOENT
     <published>2012-12-26T07:09:23.000Z</published>
     <updated>2013-07-08T01:53:06.000Z</updated>
     <content type="html"><![CDATA[<p><span style="font-size: 16px;">使用apache反向代理解决在应用A使用Iframe嵌入应用B的功能而产生的跨域问题后，应用B的功能能正常使用了。但也产生了另外一个问题：打开应用A的任何页面都会跳转主页，问题原因是：session丢失。</span></p>
-<div></div>
-<div><span style="font-size: 16px;"><strong>具体分析：</strong></span></div>
-<a name="more"></a>
-
-<span style="font-family: 微软雅黑; color: #000000; font-size: 16px;">session是通过在客户端生成一个cookie，所有请求会带上这个cookie。一个cookie的NAME、Domain和Path属性值均相同，则会覆盖，若未设置Domain域，则域为ip（不包括端口），因此应用A的session被应用B的session覆盖了。</span>
-
-&nbsp;
-
-<span style="font-family: 微软雅黑; color: #000000; font-size: 16px;">经测试：tomcat、weblogic、websphere的session默认都是JSESSIONID 为key来识别的，因此在没有特别设置下，同一个域下的多个应用session会互相覆盖。 </span>
-
-<strong><span style="font-family: 微软雅黑; color: #000000; font-size: 16px;">解决办法：</span></strong>
-
-<span style="background-color: #ffffff; color: #555554;">设置各个应用使用不同的cookie-name，或者将JSESSIONID的path路径设置为不同。</span>
-
-<span style="background-color: #ffffff; color: #555554;">1）</span><span style="background-color: #ffffff; color: #555554;">WebLogic的Cookie相关配置：<span style="background-color: #ffffff; color: #555554;">weblogic.xml</span></span>
-
-<table border="1">
-<tbody>
-<tr style="text-align: left; widows: 2; text-transform: none; background-color: #ffffff; text-indent: 0px; font: 14px/25px Arial, Helvetica, simsun, u5b8bu4f53; white-space: normal; orphans: 2; letter-spacing: normal; color: #555554; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">
-<td style="line-height: 25px;">
-
-属性名
-
-</td>
-<td style="line-height: 25px;">默认值</td>
-<td style="line-height: 25px;">值</td>
-</tr>
-<tr style="text-align: left; widows: 2; text-transform: none; background-color: #ffffff; text-indent: 0px; font: 14px/25px Arial, Helvetica, simsun, u5b8bu4f53; white-space: normal; orphans: 2; letter-spacing: normal; color: #555554; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">
-<td style="line-height: 25px;">cookie-name</td>
-<td style="line-height: 25px;">JSESSIONID</td>
-<td style="line-height: 25px;">如未设置，默认为“JSESSIONID”</td>
-</tr>
-<tr style="text-align: left; widows: 2; text-transform: none; background-color: #ffffff; text-indent: 0px; font: 14px/25px Arial, Helvetica, simsun, u5b8bu4f53; white-space: normal; orphans: 2; letter-spacing: normal; color: #555554; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">
-<td style="line-height: 25px;">cookie-path</td>
-<td style="line-height: 25px;">NULL</td>
-<td style="line-height: 25px;">如未设置，默认为“/”</td>
-</tr>
-<tr style="text-align: left; widows: 2; text-transform: none; background-color: #ffffff; text-indent: 0px; font: 14px/25px Arial, Helvetica, simsun, u5b8bu4f53; white-space: normal; orphans: 2; letter-spacing: normal; color: #555554; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">
-<td style="line-height: 25px;">cookie-domain</td>
-<td style="line-height: 25px;">NULL</td>
-<td style="line-height: 25px;">如未设置，默认为发放cookie的服务器的域</td>
-</tr>
-</tbody>
-</table>
-<div><span style="background-color: #ffffff; color: #555554; font-size: 16px;">示例代码：  </span></div>
-<div>
-<pre style="overflow-x: auto;"><span style="text-align: right; padding-bottom: 0px; margin: -2px 10px 0px 0px; padding-left: 10px; padding-right: 10px; color: #000; border-right: #ccc 5px solid; padding-top: 2px;">1.  </span>&lt;<span style="color: #808000;">session-descriptor</span>&gt; 
-<span style="text-align: right; padding-bottom: 0px; margin: -5px 10px 0px 0px; padding-left: 10px; padding-right: 10px; color: #000; border-right: #ccc 5px solid; padding-top: 4px;">2.  </span>&lt;<span style="color: #808000;">session-param</span>&gt; 
-<span style="text-align: right; padding-bottom: 0px; margin: -5px 10px 0px 0px; padding-left: 10px; padding-right: 10px; color: #000; border-right: #ccc 5px solid; padding-top: 4px;">3.  </span>&lt;<span style="color: #808000;">param-name</span>&gt;CookieName&lt;<span style="color: #808000;">/param-name</span>&gt; 
-<span style="text-align: right; padding-bottom: 0px; margin: -5px 10px 0px 0px; padding-left: 10px; padding-right: 10px; color: #000; border-right: #ccc 5px solid; padding-top: 4px;">4.  </span>&lt;<span style="color: #808000;">param-value</span>&gt;XXX_SESSIONID&lt;<span style="color: #808000;">/param-value</span>&gt;</pre>
-<pre style="overflow-x: auto;"><span style="text-align: right; padding-bottom: 0px; margin: -5px 10px 0px 0px; padding-left: 10px; padding-right: 10px; color: #000; border-right: #ccc 5px solid; padding-top: 4px;">5.  </span>&lt;<span style="color: #808000;">/session-param</span>&gt; 
-<span style="text-align: right; padding-bottom: 0px; margin: -5px 10px 0px 0px; padding-left: 10px; padding-right: 10px; color: #000; border-right: #ccc 5px solid; padding-top: 4px;">6.  </span>&lt;<span style="color: #808000;">/session-descriptor</span>&gt;</pre>
-</div>
-<div></div>
-<div></div>
-<div><span style="color: #404040; font-size: 16px;">延伸阅读：</span></div>
-<div><span style="color: #404040; font-size: 16px;">1. </span><span style="color: #404040; font-size: 16px;"><a href="http://blog.csdn.net/designlife/article/details/2552186">关于WebLogic的Session丢失的问题</a> </span><span style="background-color: #ffffff; color: #2c2c2c;"><a href="http://blog.csdn.net/DesignLife/article/details/2552186"><span style="background-color: #ffffff; color: #404040; font-size: 16px;"><a href="http://blog.csdn.net/DesignLife/article/details/2552186">http://blog.csdn.net/DesignLife/article/details/2552186</a></span></a></span></div>
-<div><span style="background-color: #ffffff; color: #2c2c2c;"><span style="background-color: #ffffff; color: #404040; font-size: 16px;"> 2. WebLogic如何设置session超时时间 </span><a href="http://tonyaction.blog.51cto.com/227462/201900"><span style="background-color: #ffffff; color: #404040; font-size: 16px;"><a href="http://tonyaction.blog.51cto.com/227462/201900">http://tonyaction.blog.51cto.com/227462/201900</a></span></a></span></div>
-<div><span style="color: #404040;"> </span></div>
-<div><span style="color: #404040;"> </span></div>
-<div>
-
-<span style="font-family: Arial; color: #000000; font-size: 16px;">2）websphere的设置（设置不同JSESSIONID的path）</span>
-
-<span style="color: #000000; font-size: 16px;">应用程序-&gt;企业应用程序-&gt; [Application Server] -&gt;</span>
-<span style="color: #000000; font-size: 16px;">会话管理-&gt;1.覆盖会话管理(需打钩).</span>
-<span style="color: #000000; font-size: 16px;">会话管理-&gt;2.启用 cookie(需打钩)-&gt;修改&#39;Cookie路径&#39; </span>
-
-</div>
-<img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/12/wpid-8db6d486648551a05afce2626624fbe8_13361844.png" alt="">
-
-&nbsp;
-
-<strong>3）Tomcat的设置（设置不同JSESSIONID的path）</strong>
-
-<span style="background-color: #ffffff; color: #555554;">修改tomcat/conf/server.xml：<span class="Apple-converted-space" style="font-family: Arial;"> </span></span>
-
-&nbsp;
-
-<strong>1.tomcat5修改方法</strong>
-
-在启动项中增加org.apache.catalina.SESSION_COOKIE_NAME参数
-&gt; linux
-&gt; <span><span style="background-color: #e7cfe0; color: #000000;">JAVA</span>_OPTS=’</span><span style="color: #ff0000;">-Dorg.apache.catalina.SESSION_COOKIE_NAME=yousessionname</span>‘
-&gt; 
-&gt; win
-&gt; set JAVA_OPTS=”<span style="color: #ff0000;">-Dorg.apache.catalina.SESSION_COOKIE_NAME=yousessionname</span>“
-<strong>2.tomcat6和tomcat7修改方法相同</strong>
-
-在Context容器标签上增加sessionCookieName参数
-&gt; &lt;Context path=”/” docBase=”webapp” reloadable=”false” <span style="color: #ff0000;">sessionCookieName=”yoursessionname”</span>&gt;&lt;/Context&gt;
-还可以加上sessionCookiePath
-&gt; <span style="background-color: #ffffff; color: #555554;"><span style="background-color: #ffffff; color: #555554;">&lt;Context ... sessionCookiePath=&quot;/&quot; &gt; ... &lt;/Context&gt;<span class="Apple-converted-space" style="font-family: Arial;"> </span></span></span>
-<span style="background-color: #ffffff; color: #555554;"><span style="background-color: #ffffff; color: #555554;"><span class="Apple-converted-space" style="font-family: Arial;">延伸阅读：tomcat修改jsessionid在cookie中的名称 <a href="http://blog.shilimin.com/338.htm"><a href="http://blog.shilimin.com/338.htm">http://blog.shilimin.com/338.htm</a></a></span></span></span>
-
-&nbsp;
-<div><a href="http://www.wiz.cn/" title="为知笔记">通过 为知笔记 发布</a></div>]]></content>
+<div></div><br><div><span style="font-size: 16px;"><strong>具体分析：</strong></span></div><br><a id="more"></a><br><br><span style="font-family: 微软雅黑; color: #000000; font-size: 16px;">session是通过在客户端生成一个cookie，所有请求会带上这个cookie。一个cookie的NAME、Domain和Path属性值均相同，则会覆盖，若未设置Domain域，则域为ip（不包括端口），因此应用A的session被应用B的session覆盖了。</span><br><br>&nbsp;<br><br><span style="font-family: 微软雅黑; color: #000000; font-size: 16px;">经测试：tomcat、weblogic、websphere的session默认都是JSESSIONID 为key来识别的，因此在没有特别设置下，同一个域下的多个应用session会互相覆盖。 </span><br><br><strong><span style="font-family: 微软雅黑; color: #000000; font-size: 16px;">解决办法：</span></strong><br><br><span style="background-color: #ffffff; color: #555554;">设置各个应用使用不同的cookie-name，或者将JSESSIONID的path路径设置为不同。</span><br><br><span style="background-color: #ffffff; color: #555554;">1）</span><span style="background-color: #ffffff; color: #555554;">WebLogic的Cookie相关配置：<span style="background-color: #ffffff; color: #555554;">weblogic.xml</span></span><br><br><table border="1"><br><tbody><br><tr style="text-align: left; widows: 2; text-transform: none; background-color: #ffffff; text-indent: 0px; font: 14px/25px Arial, Helvetica, simsun, u5b8bu4f53; white-space: normal; orphans: 2; letter-spacing: normal; color: #555554; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;"><br><td style="line-height: 25px;"><br><br>属性名<br><br></td><br><td style="line-height: 25px;">默认值</td><br><td style="line-height: 25px;">值</td><br></tr><br><tr style="text-align: left; widows: 2; text-transform: none; background-color: #ffffff; text-indent: 0px; font: 14px/25px Arial, Helvetica, simsun, u5b8bu4f53; white-space: normal; orphans: 2; letter-spacing: normal; color: #555554; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;"><br><td style="line-height: 25px;">cookie-name</td><br><td style="line-height: 25px;">JSESSIONID</td><br><td style="line-height: 25px;">如未设置，默认为“JSESSIONID”</td><br></tr><br><tr style="text-align: left; widows: 2; text-transform: none; background-color: #ffffff; text-indent: 0px; font: 14px/25px Arial, Helvetica, simsun, u5b8bu4f53; white-space: normal; orphans: 2; letter-spacing: normal; color: #555554; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;"><br><td style="line-height: 25px;">cookie-path</td><br><td style="line-height: 25px;">NULL</td><br><td style="line-height: 25px;">如未设置，默认为“/”</td><br></tr><br><tr style="text-align: left; widows: 2; text-transform: none; background-color: #ffffff; text-indent: 0px; font: 14px/25px Arial, Helvetica, simsun, u5b8bu4f53; white-space: normal; orphans: 2; letter-spacing: normal; color: #555554; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;"><br><td style="line-height: 25px;">cookie-domain</td><br><td style="line-height: 25px;">NULL</td><br><td style="line-height: 25px;">如未设置，默认为发放cookie的服务器的域</td><br></tr><br></tbody><br></table><br><div><span style="background-color: #ffffff; color: #555554; font-size: 16px;">示例代码：  </span></div><br><div><br><pre style="overflow-x: auto;"><span style="text-align: right; padding-bottom: 0px; margin: -2px 10px 0px 0px; padding-left: 10px; padding-right: 10px; color: #000; border-right: #ccc 5px solid; padding-top: 2px;">1.  </span>&lt;<span style="color: #808000;">session-descriptor</span>&gt;<br><span style="text-align: right; padding-bottom: 0px; margin: -5px 10px 0px 0px; padding-left: 10px; padding-right: 10px; color: #000; border-right: #ccc 5px solid; padding-top: 4px;">2.  </span>&lt;<span style="color: #808000;">session-param</span>&gt;<br><span style="text-align: right; padding-bottom: 0px; margin: -5px 10px 0px 0px; padding-left: 10px; padding-right: 10px; color: #000; border-right: #ccc 5px solid; padding-top: 4px;">3.  </span>&lt;<span style="color: #808000;">param-name</span>&gt;CookieName&lt;<span style="color: #808000;">/param-name</span>&gt;<br><span style="text-align: right; padding-bottom: 0px; margin: -5px 10px 0px 0px; padding-left: 10px; padding-right: 10px; color: #000; border-right: #ccc 5px solid; padding-top: 4px;">4.  </span>&lt;<span style="color: #808000;">param-value</span>&gt;XXX_SESSIONID&lt;<span style="color: #808000;">/param-value</span>&gt;</pre><br><pre style="overflow-x: auto;"><span style="text-align: right; padding-bottom: 0px; margin: -5px 10px 0px 0px; padding-left: 10px; padding-right: 10px; color: #000; border-right: #ccc 5px solid; padding-top: 4px;">5.  </span>&lt;<span style="color: #808000;">/session-param</span>&gt;<br><span style="text-align: right; padding-bottom: 0px; margin: -5px 10px 0px 0px; padding-left: 10px; padding-right: 10px; color: #000; border-right: #ccc 5px solid; padding-top: 4px;">6.  </span>&lt;<span style="color: #808000;">/session-descriptor</span>&gt;</pre><br></div><br><div></div><br><div></div><br><div><span style="color: #404040; font-size: 16px;">延伸阅读：</span></div><br><div><span style="color: #404040; font-size: 16px;">1. </span><span style="color: #404040; font-size: 16px;"><a href="http://blog.csdn.net/designlife/article/details/2552186" target="_blank">关于WebLogic的Session丢失的问题</a> </span><span style="background-color: #ffffff; color: #2c2c2c;"><a href="http://blog.csdn.net/DesignLife/article/details/2552186" target="_blank"><span style="background-color: #ffffff; color: #404040; font-size: 16px;"><a href="http://blog.csdn.net/DesignLife/article/details/2552186">http://blog.csdn.net/DesignLife/article/details/2552186</a></span></a></span></div><br><div><span style="background-color: #ffffff; color: #2c2c2c;"><span style="background-color: #ffffff; color: #404040; font-size: 16px;"> 2. WebLogic如何设置session超时时间 </span><a href="http://tonyaction.blog.51cto.com/227462/201900" target="_blank"><span style="background-color: #ffffff; color: #404040; font-size: 16px;"><a href="http://tonyaction.blog.51cto.com/227462/201900">http://tonyaction.blog.51cto.com/227462/201900</a></span></a></span></div><br><div><span style="color: #404040;"> </span></div><br><div><span style="color: #404040;"> </span></div><br><div><br><br><span style="font-family: Arial; color: #000000; font-size: 16px;">2）websphere的设置（设置不同JSESSIONID的path）</span><br><br><span style="color: #000000; font-size: 16px;">应用程序-&gt;企业应用程序-&gt; [Application Server] -&gt;</span><br><span style="color: #000000; font-size: 16px;">会话管理-&gt;1.覆盖会话管理(需打钩).</span><br><span style="color: #000000; font-size: 16px;">会话管理-&gt;2.启用 cookie(需打钩)-&gt;修改‘Cookie路径’ </span><br><br></div><br><img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/12/wpid-8db6d486648551a05afce2626624fbe8_13361844.png" alt=""><br><br>&nbsp;<br><br><strong>3）Tomcat的设置（设置不同JSESSIONID的path）</strong><br><br><span style="background-color: #ffffff; color: #555554;">修改tomcat/conf/server.xml：<span class="Apple-converted-space" style="font-family: Arial;"> </span></span><br><br>&nbsp;<br><br><strong>1.tomcat5修改方法</strong><br><br>在启动项中增加org.apache.catalina.SESSION_COOKIE_NAME参数<br>&gt; linux<br>&gt; <span><span style="background-color: #e7cfe0; color: #000000;">JAVA</span>_OPTS=’</span><span style="color: #ff0000;">-Dorg.apache.catalina.SESSION_COOKIE_NAME=yousessionname</span>‘<br>&gt;<br>&gt; win<br>&gt; set JAVA_OPTS=”<span style="color: #ff0000;">-Dorg.apache.catalina.SESSION_COOKIE_NAME=yousessionname</span>“<br><strong>2.tomcat6和tomcat7修改方法相同</strong><br><br>在Context容器标签上增加sessionCookieName参数<br>&gt; &lt;Context path=”/” docBase=”webapp” reloadable=”false” <span style="color: #ff0000;">sessionCookieName=”yoursessionname”</span>&gt;&lt;/Context&gt;<br>还可以加上sessionCookiePath<br>&gt; <span style="background-color: #ffffff; color: #555554;"><span style="background-color: #ffffff; color: #555554;">&lt;Context … sessionCookiePath=“/” &gt; … &lt;/Context&gt;<span class="Apple-converted-space" style="font-family: Arial;"> </span></span></span><br><span style="background-color: #ffffff; color: #555554;"><span style="background-color: #ffffff; color: #555554;"><span class="Apple-converted-space" style="font-family: Arial;">延伸阅读：tomcat修改jsessionid在cookie中的名称 <a href="http://blog.shilimin.com/338.htm" target="_blank"><a href="http://blog.shilimin.com/338.htm">http://blog.shilimin.com/338.htm</a></a></span></span></span><br><br>&nbsp;<br><div><a href="http://www.wiz.cn/" title="为知笔记" target="_blank">通过 为知笔记 发布</a></div>]]></content>
     <category scheme="http://zhenghongen.cn/tags/Java/" term="Java"/>
     <category scheme="http://zhenghongen.cn/tags/Tomcat/" term="Tomcat"/>
     <category scheme="http://zhenghongen.cn/tags/Weblogic/" term="Weblogic"/>
@@ -195,84 +97,7 @@ Error: spawn ENOENT
     <id>http://zhenghongen.cn/2012/12/09/yue-du-zhe-reading-notes/</id>
     <published>2012-12-08T18:53:13.000Z</published>
     <updated>2013-07-08T01:53:06.000Z</updated>
-    <content type="html"><![CDATA[<div><strong>序言</strong></div>
-<div>P7    大学生正是通过读书，进入民族和人类文明的文化殿堂，吸取前人所创造的文明成果、精神资源，在文化传递中完成“从自然人变成文化人，由自在的人变成自为的人”的精神蜕变过程。</div>
-<div>P9    （在太功利的社会里）如果预先决定未来的职业，再把受教育完全当作为就业作准备，这会妨碍现在的只能发展，从而使为未来就业作的准备大打折扣。——美国·哲学家，教育家·杜威</div>
-<a name="more"></a>
-<div></div>
-<div><strong>前言</strong></div>
-<div>P29    阅读，有各种存在的理由及意义。其中最动人、作用也最大的，还是阅读和理想或梦想结合的时候。</div>
-<div></div>
-<div><strong>Part 1 学校带来的一些困惑</strong></div>
-<div>P49    每一本书都可能是一道窗户，改变我们对世界观望的方向；或是一道门户，改变我们人生真正走出去的方向。</div>
-<div>P50    读书是改进生活、丰富生活的手段，该读写什么书要依了生活来决定选择。 ——夏丐尊</div>
-<div>P52    两种阅读曲线</div>
-<div><img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/12/wpid-e9d740cda9a0590f9453041845182892_88744850.jpg" alt=""></div>
-<div><img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/12/wpid-e9d740cda9a0590f9453041845182892_88795862.jpg" alt=""></div>
-<div><img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/12/wpid-e9d740cda9a0590f9453041845182892_88818701.jpg" alt=""></div>
-<div></div>
-<div></div>
-<div>P56    除了爱情，没有事情像阅读这样让我们觉得，迟来的开始也可以如此美好。</div>
-<div></div>
-<div><strong>Part2 跨越四种阅读饮食</strong></div>
-<div>P60    阅读，这种给头脑的饮食，也可以分成四种。</div>
-<div>第一种阅读，是为了寻求人生在职业、工作、生活、生理、心理等方面，一些现实问题的直接解决之道。这一类很像是让我们有饱足感的主食。主食阅读，又可以称之为“生存需求的阅读”。</div>
-<div>第二种阅读的特质，不求针对你人生的现实问题，提出直接的解决之道，然而，却可能帮助我们从一个看来间接，但是却非常根本的方向，思考这些问题或现象的本质是什么。</div>
-<div>这种阅读是在帮助我们体会人类生命深处的共鸣，思想深处的结晶，很像是饮食分类里的“美食”。美食阅读，又可以称之为“思想需求的阅读”。</div>
-<div>第三种阅读，是为了帮助我们查证阅读过程中不了解的字义、语义、典故与出处，而进行的阅读，很像是饮食里的蔬菜、水果。蔬果阅读，又可以称之为“工具需求的阅读”。</div>
-<div>第四种阅读，和前面三种的不同之处，在于没有一定的目的，不为了寻求现实问题的直接解决之道，不为了寻找思想的结晶，也不为了参考或查证，阅读就是为了娱乐、消遣，是一种休闲活动，很像是饮食里的甜食或零食，追求的就是口感。甜食阅读，又可以称之为“休闲需求的阅读”。</div>
-<div>P63    主食阅读带来的饱足感，让人误以为是营养的，是饮食的全部的两个风险：</div>
-<div>第一，他会忽略主食的本质，意识不到主食的不足。</div>
-<div>第二，他会错过太多其他阅读美味的可能。</div>
-<div>P69    美食阅读的4个陷阱：</div>
-<div>第一，容易让人望而却步。</div>
-<div>第二，因为比较容易让人望而却步，所以很多人即使接触了，也不知道应该如何料理，如何享受。</div>
-<div>第三，由于大家比较容易望而却步，比较不知道如何料理、享受，所以也就容易受骗、上当。</div>
-<div>第四，在于“主食阅读”和“美食阅读”之间，有时候会感觉到一些灰色地带，难以分别。</div>
-<div>P78    甜食阅读的三个风险：</div>
-<div>一、它越是没有被适当地认知，或是被压制阅读，越是会被过度地反弹与偏爱。</div>
-<div>二、由于没有被适当地对待，所以阅读的人容易不长见识，不辨优劣。</div>
-<div>三、越是不辨优劣，越是不可能有机会体会到甜食的真正意义与价值。</div>
-<div>P86    这个世界上没有一本书是人人所必须阅读的，只有在某时某地、某个环境或某个年龄中一个人所必读的书。——林语堂</div>
-<div></div>
-<div></div>
-<div><strong>Part3    网络上的事情</strong></div>
-<div>P99    网络出现的本意，虽然是为了方便文字的交换与传播，但却注定要提供一个文字以外的阅读与沟通的过程。网络终将结合文字以外的声音、影像、气味、触感，甚至意念，提供一种全新的认知经验，让人类重归全观的认知经验。</div>
-<div></div>
-<div><strong>Part4 越界的基础</strong></div>
-<div>P162    网络上的阅读，和书籍阅读一样，也可以分为四类饮食。</div>
-<div>第一，主食阅读——新资讯的需求。</div>
-<div>第二，美食阅读——思想结晶的需求。</div>
-<div>第三，蔬果阅读——工具需求。</div>
-<div>第四，甜食阅读——休闲及娱乐需求。</div>
-<div></div>
-<div><strong>Part5 一些工具</strong></div>
-<div>P171    读书，本来是书在人在，不必谈什么空间。要读，处处可读；不读，则处处不可读。</div>
-<div>P171    苟能发奋自主，则家塾可读书；即旷野之地，热闹一场，亦可读书；负薪牧豕亦可读书。苟不能发奋自主，则家塾不宜读书；即清净之乡，神仙之境，皆不能读书。</div>
-<div></div>
-<div><strong>Part6    一些方法</strong></div>
-<div>P202    如何判断一本书是否带回家：</div>
-<div>遇上一本你卡莱还不错的书，先是随意翻阅一下，这就是“不求甚解”。</div>
-<div>然后，从书的封面、封底、作者介绍、作者前沿、目录这几个部分对这本书“观其大略”。</div>
-<div>再来，挑一个和全书精神最呼应，也是目录或前言里作者最着重的短路，自习地“熟读精思”个三五分钟。</div>
-<div>P204 艾德勒的读书法</div>
-<div><img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/12/wpid-e9d740cda9a0590f9453041845182892_98893760.jpg" alt=""></div>
-<div><img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/12/wpid-e9d740cda9a0590f9453041845182892_98910265.jpg" alt=""></div>
-<div>P219    笛卡尔的四个方法：</div>
-<div>第一条是：凡是我们没有明确地认识到的东西，我绝不把它当成真的接受。...</div>
-<div>第二条是：把我所审查的每一个难题按照可能和必要的程度分成若干部分，以便一一妥为解决。</div>
-<div>第三条是：按次序进行我的思考。从最简单、最容易认识的对象开始，一点一点逐步上升，知道认识最复杂的对象；就连那些本来没有先后关系的东西，也给它们设定一个次序。</div>
-<div>最后一条是：在任何情况之下，都要尽量全面地考察，尽量普遍地复查，做到确信毫无遗漏。</div>
-<div>P220    笛卡尔的几条行为准则：</div>
-<div>一、遵从这个社会及法律的规定。在所有的意见中，采取最远离极端、最中道之见，来约束自己。</div>
-<div>二、在不明白自己的选择是否正确时，要跟从或然率。看不出或然率大小的时候，还是要做一抉择。一旦抉择，就不再以为它们可疑，而相信那是最可靠、最正确的看法，果断坚决，不再犹豫，反复无常。就像密林中迷路的人，总要前行，不能停留在原地。</div>
-<div>三、永远只求客服自己，而不求客服命运。只求改变自己的愿望，而不求改变世间的秩序。要始终相信一点，除了我们自己的思想，没有一样事情我们可以自主。尽自己最大的努力去改善。改善不了的，就是不可能的。不可能的事，就不要去痴心妄想。这样也就可以安分守己，心满意足。</div>
-<div></div>
-<div><strong>Part7    跨越七道阶梯</strong></div>
-<div>P233    在我们阅读的阶梯上，如果没有一定高度的眼界与认知，而只是自以为是地拼命努力，不但不可能解决那一阶上的问题，上不了台阶，还可能翻过了围墙，却遭遇灾难。</div>
-<div></div>
-&nbsp;
-<div><a href="http://www.wiz.cn/" title="为知笔记">通过 为知笔记 发布</a></div>]]></content>
+    <content type="html"><![CDATA[<div><strong>序言</strong></div><br><div>P7    大学生正是通过读书，进入民族和人类文明的文化殿堂，吸取前人所创造的文明成果、精神资源，在文化传递中完成“从自然人变成文化人，由自在的人变成自为的人”的精神蜕变过程。</div><br><div>P9    （在太功利的社会里）如果预先决定未来的职业，再把受教育完全当作为就业作准备，这会妨碍现在的只能发展，从而使为未来就业作的准备大打折扣。——美国·哲学家，教育家·杜威</div><br><a id="more"></a><br><div></div><br><div><strong>前言</strong></div><br><div>P29    阅读，有各种存在的理由及意义。其中最动人、作用也最大的，还是阅读和理想或梦想结合的时候。</div><br><div></div><br><div><strong>Part 1 学校带来的一些困惑</strong></div><br><div>P49    每一本书都可能是一道窗户，改变我们对世界观望的方向；或是一道门户，改变我们人生真正走出去的方向。</div><br><div>P50    读书是改进生活、丰富生活的手段，该读写什么书要依了生活来决定选择。 ——夏丐尊</div><br><div>P52    两种阅读曲线</div><br><div><img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/12/wpid-e9d740cda9a0590f9453041845182892_88744850.jpg" alt=""></div><br><div><img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/12/wpid-e9d740cda9a0590f9453041845182892_88795862.jpg" alt=""></div><br><div><img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/12/wpid-e9d740cda9a0590f9453041845182892_88818701.jpg" alt=""></div><br><div></div><br><div></div><br><div>P56    除了爱情，没有事情像阅读这样让我们觉得，迟来的开始也可以如此美好。</div><br><div></div><br><div><strong>Part2 跨越四种阅读饮食</strong></div><br><div>P60    阅读，这种给头脑的饮食，也可以分成四种。</div><br><div>第一种阅读，是为了寻求人生在职业、工作、生活、生理、心理等方面，一些现实问题的直接解决之道。这一类很像是让我们有饱足感的主食。主食阅读，又可以称之为“生存需求的阅读”。</div><br><div>第二种阅读的特质，不求针对你人生的现实问题，提出直接的解决之道，然而，却可能帮助我们从一个看来间接，但是却非常根本的方向，思考这些问题或现象的本质是什么。</div><br><div>这种阅读是在帮助我们体会人类生命深处的共鸣，思想深处的结晶，很像是饮食分类里的“美食”。美食阅读，又可以称之为“思想需求的阅读”。</div><br><div>第三种阅读，是为了帮助我们查证阅读过程中不了解的字义、语义、典故与出处，而进行的阅读，很像是饮食里的蔬菜、水果。蔬果阅读，又可以称之为“工具需求的阅读”。</div><br><div>第四种阅读，和前面三种的不同之处，在于没有一定的目的，不为了寻求现实问题的直接解决之道，不为了寻找思想的结晶，也不为了参考或查证，阅读就是为了娱乐、消遣，是一种休闲活动，很像是饮食里的甜食或零食，追求的就是口感。甜食阅读，又可以称之为“休闲需求的阅读”。</div><br><div>P63    主食阅读带来的饱足感，让人误以为是营养的，是饮食的全部的两个风险：</div><br><div>第一，他会忽略主食的本质，意识不到主食的不足。</div><br><div>第二，他会错过太多其他阅读美味的可能。</div><br><div>P69    美食阅读的4个陷阱：</div><br><div>第一，容易让人望而却步。</div><br><div>第二，因为比较容易让人望而却步，所以很多人即使接触了，也不知道应该如何料理，如何享受。</div><br><div>第三，由于大家比较容易望而却步，比较不知道如何料理、享受，所以也就容易受骗、上当。</div><br><div>第四，在于“主食阅读”和“美食阅读”之间，有时候会感觉到一些灰色地带，难以分别。</div><br><div>P78    甜食阅读的三个风险：</div><br><div>一、它越是没有被适当地认知，或是被压制阅读，越是会被过度地反弹与偏爱。</div><br><div>二、由于没有被适当地对待，所以阅读的人容易不长见识，不辨优劣。</div><br><div>三、越是不辨优劣，越是不可能有机会体会到甜食的真正意义与价值。</div><br><div>P86    这个世界上没有一本书是人人所必须阅读的，只有在某时某地、某个环境或某个年龄中一个人所必读的书。——林语堂</div><br><div></div><br><div></div><br><div><strong>Part3    网络上的事情</strong></div><br><div>P99    网络出现的本意，虽然是为了方便文字的交换与传播，但却注定要提供一个文字以外的阅读与沟通的过程。网络终将结合文字以外的声音、影像、气味、触感，甚至意念，提供一种全新的认知经验，让人类重归全观的认知经验。</div><br><div></div><br><div><strong>Part4 越界的基础</strong></div><br><div>P162    网络上的阅读，和书籍阅读一样，也可以分为四类饮食。</div><br><div>第一，主食阅读——新资讯的需求。</div><br><div>第二，美食阅读——思想结晶的需求。</div><br><div>第三，蔬果阅读——工具需求。</div><br><div>第四，甜食阅读——休闲及娱乐需求。</div><br><div></div><br><div><strong>Part5 一些工具</strong></div><br><div>P171    读书，本来是书在人在，不必谈什么空间。要读，处处可读；不读，则处处不可读。</div><br><div>P171    苟能发奋自主，则家塾可读书；即旷野之地，热闹一场，亦可读书；负薪牧豕亦可读书。苟不能发奋自主，则家塾不宜读书；即清净之乡，神仙之境，皆不能读书。</div><br><div></div><br><div><strong>Part6    一些方法</strong></div><br><div>P202    如何判断一本书是否带回家：</div><br><div>遇上一本你卡莱还不错的书，先是随意翻阅一下，这就是“不求甚解”。</div><br><div>然后，从书的封面、封底、作者介绍、作者前沿、目录这几个部分对这本书“观其大略”。</div><br><div>再来，挑一个和全书精神最呼应，也是目录或前言里作者最着重的短路，自习地“熟读精思”个三五分钟。</div><br><div>P204 艾德勒的读书法</div><br><div><img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/12/wpid-e9d740cda9a0590f9453041845182892_98893760.jpg" alt=""></div><br><div><img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/12/wpid-e9d740cda9a0590f9453041845182892_98910265.jpg" alt=""></div><br><div>P219    笛卡尔的四个方法：</div><br><div>第一条是：凡是我们没有明确地认识到的东西，我绝不把它当成真的接受。…</div><br><div>第二条是：把我所审查的每一个难题按照可能和必要的程度分成若干部分，以便一一妥为解决。</div><br><div>第三条是：按次序进行我的思考。从最简单、最容易认识的对象开始，一点一点逐步上升，知道认识最复杂的对象；就连那些本来没有先后关系的东西，也给它们设定一个次序。</div><br><div>最后一条是：在任何情况之下，都要尽量全面地考察，尽量普遍地复查，做到确信毫无遗漏。</div><br><div>P220    笛卡尔的几条行为准则：</div><br><div>一、遵从这个社会及法律的规定。在所有的意见中，采取最远离极端、最中道之见，来约束自己。</div><br><div>二、在不明白自己的选择是否正确时，要跟从或然率。看不出或然率大小的时候，还是要做一抉择。一旦抉择，就不再以为它们可疑，而相信那是最可靠、最正确的看法，果断坚决，不再犹豫，反复无常。就像密林中迷路的人，总要前行，不能停留在原地。</div><br><div>三、永远只求客服自己，而不求客服命运。只求改变自己的愿望，而不求改变世间的秩序。要始终相信一点，除了我们自己的思想，没有一样事情我们可以自主。尽自己最大的努力去改善。改善不了的，就是不可能的。不可能的事，就不要去痴心妄想。这样也就可以安分守己，心满意足。</div><br><div></div><br><div><strong>Part7    跨越七道阶梯</strong></div><br><div>P233    在我们阅读的阶梯上，如果没有一定高度的眼界与认知，而只是自以为是地拼命努力，不但不可能解决那一阶上的问题，上不了台阶，还可能翻过了围墙，却遭遇灾难。</div><br><div></div><br>&nbsp;<br><div><a href="http://www.wiz.cn/" title="为知笔记" target="_blank">通过 为知笔记 发布</a></div>]]></content>
     <category scheme="http://zhenghongen.cn/tags/我的读书笔记/" term="我的读书笔记"/>
     <category scheme="http://zhenghongen.cn/categories/读书笔记/" term="读书笔记"/>
   </entry>
@@ -285,16 +110,10 @@ Error: spawn ENOENT
     <content type="html"><![CDATA[<p>&nbsp;</p>
 <p>&nbsp;</p>
 <p><img src="http://img3.douban.com/lpic/s6771276.jpg" alt="" title="我是我的平衡女王"></p>
-<p>前言
-P5 用自己的生命去书写故事，故事精彩，与众不同的人生鲜活而有生机。</p>
-<p>Chapter1
-P21 成功并没有特定的公式，对于不同的人，成功的概念和意义会完全不同。我想要的成功就是拿冠军，对于另外一些人，也许能够一直在舞台上唱歌给喜欢的人听，就是成功；对于一些人，也许能够一边流浪，一边为遇到的人画一幅画，就是成功。
-每个人对于幸福的理解不同，我想，只要我们能够得到自己想要的幸福，其实就是成功。</p>
-<p>Chapter2
-P58 每一次的失败都是一次成长，人需要在失败的时候重新给自己定目标，这样才能从失败中站起来，不然你就是永远那个失败者。 ——赵汉华</p>
-<p>Chapter3
-P94 从小妹妹到大姐姐的转变，我只用了一年的时间，在运动员的圈子里，年龄从来不是比较一个人资历的标准，而是要看他从事这项运动的时间和经验。
-P96 这场比赛已经结束了！如果只是说为了这场比赛痛苦是没有用的，你应该好好总结为什么会出现这样的情况，是不是自己没有做好面对困难的准备。往后看的永远不是痛苦，而是支持自己继续前进的经验。</p>
+<p>前言<br>P5 用自己的生命去书写故事，故事精彩，与众不同的人生鲜活而有生机。</p>
+<p>Chapter1<br>P21 成功并没有特定的公式，对于不同的人，成功的概念和意义会完全不同。我想要的成功就是拿冠军，对于另外一些人，也许能够一直在舞台上唱歌给喜欢的人听，就是成功；对于一些人，也许能够一边流浪，一边为遇到的人画一幅画，就是成功。<br>每个人对于幸福的理解不同，我想，只要我们能够得到自己想要的幸福，其实就是成功。</p>
+<p>Chapter2<br>P58 每一次的失败都是一次成长，人需要在失败的时候重新给自己定目标，这样才能从失败中站起来，不然你就是永远那个失败者。 ——赵汉华</p>
+<p>Chapter3<br>P94 从小妹妹到大姐姐的转变，我只用了一年的时间，在运动员的圈子里，年龄从来不是比较一个人资历的标准，而是要看他从事这项运动的时间和经验。<br>P96 这场比赛已经结束了！如果只是说为了这场比赛痛苦是没有用的，你应该好好总结为什么会出现这样的情况，是不是自己没有做好面对困难的准备。往后看的永远不是痛苦，而是支持自己继续前进的经验。</p>
 <p>&nbsp;</p>
 ]]></content>
     <category scheme="http://zhenghongen.cn/tags/我的读书笔记/" term="我的读书笔记"/>
@@ -313,42 +132,35 @@ P96 这场比赛已经结束了！如果只是说为了这场比赛痛苦是没�
 <p><div>·男子单打从来不乏天王级的巨星，然而，在每一场看似是一对一的决斗背后，凝结了太多的情感与传奇。我发觉，我收获的不仅仅是多少个冠军头衔，更是那些人与事在我生命中留下的刻痕。</div></p>
 <p><div>·我只希望在有限的文字里，纪念我们走过的荣誉与共。</div></p>
 <p><div>·人生的精彩不在于你站得有多高，而在于生命的宽度。</div></p>
-<p><div></div>
-<a name="more"></a></p>
+<p><div></div><br><a id="more"></a></p>
 <p><div>PART 1 梦想从上杭启程</div></p>
 <p><div>P23 这么多年了，店里的碗还是那只碗，汤还是那个汤。我不知道其他从家乡出来的人有没有这种感觉——无论你走多远、走多久，有些东西都还在那里等着你，保留着最初的味道。</div></p>
-<p><div></div>
-&nbsp;</p>
+<p><div></div><br>&nbsp;</p>
 <p><div>PART 2 从“林一轮”到世界冠军</div></p>
 <p><div>P48 不服输、好胜心强、求胜心切的这种性格，就像一把双刃剑，既成就了后来的我，也让我在职业生涯中多次遭遇危机，兵败雅典就是最好的例证。</div></p>
 <p><div>P65 年轻的时候，当你要穿上国家队的战袍第一次参加大赛时，你可能会因为兴奋而睡不好。当你成绩越来越好之后，所有人又希望你一路胜下去，你又会因为紧张而睡不好。而现在，我们不知道我还能打多少届汤杯。我只希望在有限的时间里，留下尽可能圆满的回忆。</div></p>
 <p><div>荣耀留在过去，未来更加可期。</div></p>
-<p><div></div>
-&nbsp;</p>
+<p><div></div><br>&nbsp;</p>
 <p><div>PART 3 有多少四年可以重来：终成全满贯</div></p>
 <p><div>P107 当一个运动员从小离开父母、日复一日地苦练时，他就堵上了自己的青春和前途，最终变成四年就为等一个机会。万一中间受伤，或者生病，或者一些不确定的因素造成他没能取得好成绩，甚至没能参加奥运会，那怎么办？</div></p>
-<p><div></div>
-&nbsp;</p>
+<p><div></div><br>&nbsp;</p>
 <p><div>PART 4 谢谢你的爱</div></p>
 <p><div>P129 这么多年来，我时常有种感觉，就是周围的人似乎还没学会承认别人的好，也不懂得赞美和祝福别人。相反，越是看到别人过得不好，越是愿意去同情他。甚至可能是以匪夷所思的大方法帮助别人，哪怕自己家里都揭不开锅了，也要分给别人一口饭吃的。但是一旦看到别人过的比他好，心里就不乐意了。</div></p>
 <p><div>P129 无论是爱情、工作还是生活方式，都不需要和别人比较，自己喜欢就好。</div></p>
 <p><div>P129 有时候，内心的安定和满足远比物质带给你的安全感要来得强烈。</div></p>
 <p><div>P137 但是第一、第二只是留给那场比赛，被定格在历史中。如果你的球技、你的球风、你的 人格魅力能深入人心，多年后还为人所津津乐道，我觉得这才是一名优秀的选手，甚至是伟大的运动员。只有等事情过去五年、十年甚至更久之后，依然有人因为你这场球的魅力改变了他们的一生，让他们重新审视自己的价值观，并发现了那个特别用心、特别努力的你，这样的运动员才能被历史记住。</div></p>
-<p><div></div>
-&nbsp;</p>
+<p><div></div><br>&nbsp;</p>
 <p><div>PART 5 一路上有你</div></p>
 <p><div>P158 任何时候不要去怀疑自己，或是羡慕别人。做好自己，全力以赴地把握好每一天，不要太计较最终的结果。这个过程只是迟早和长短而已，最终都会有属于自己的天地和展现自己价值的一天。</div></p>
 <p><div>P171 千万不要忘了，我也是一个普通人，我并不是高高在上的全满贯、所谓的外星人，我只是个普通的小伙子。通过自己的努力和坚持，是可以做到让别人刮目相看的，我们都很平凡，但我们可以做成一些不平凡的事。</div></p>
-<p><div></div>
-&nbsp;</p>
+<p><div></div><br>&nbsp;</p>
 <p><div>PART 6 赛场之外的精彩</div></p>
 <p><div>P177 生命就是一场与自己的赛跑，即便最后总要跌倒，也要留给世间一个美丽的姿态。</div></p>
 <p><div>P186 赛场小人生，人生大赛场，越是在大的困难面前，越是要抬头迎击。</div></p>
 <p><div>P187 赢了，那不是我的最辉煌；输了，也不会是我的最低谷。</div></p>
 <p><div id="dictHcBtn" title="查询当前选择词"></div></p>
 <p><div id="dictHcSettingArea"></div></p>
-<p><div id="dictHcClosetip"></div>
-&nbsp;</p>
+<p><div id="dictHcClosetip"></div><br>&nbsp;</p>
 ]]></content>
     <category scheme="http://zhenghongen.cn/tags/我的读书笔记/" term="我的读书笔记"/>
     <category scheme="http://zhenghongen.cn/categories/读书笔记/" term="读书笔记"/>
@@ -361,7 +173,7 @@ P96 这场比赛已经结束了！如果只是说为了这场比赛痛苦是没�
     <updated>2013-07-08T01:53:06.000Z</updated>
     <content type="html"><![CDATA[<p>博客升级到了3.4.1，目前没有发现大问题，就是jiaThis分享工具跟“本文固定连接”会错位，估计是样式问题照成的。</p>
 <p>具体升级方法参考如下文章：</p>
-<p><a href="http://wp4sae.org/2012/06/wordpress-for-sae-3-4-1-rc0-release/"><a href="http://wp4sae.org/2012/06/wordpress-for-sae-3-4-1-rc0-release/">http://wp4sae.org/2012/06/wordpress-for-sae-3-4-1-rc0-release/</a></a></p>
+<p><a href="http://wp4sae.org/2012/06/wordpress-for-sae-3-4-1-rc0-release/" target="_blank"><a href="http://wp4sae.org/2012/06/wordpress-for-sae-3-4-1-rc0-release/">http://wp4sae.org/2012/06/wordpress-for-sae-3-4-1-rc0-release/</a></a></p>
 <p>采用了文章中写到的最安全的升级方法，目前运行稳定。</p>
 ]]></content>
     <category scheme="http://zhenghongen.cn/categories/站点更新/" term="站点更新"/>
@@ -372,16 +184,7 @@ P96 这场比赛已经结束了！如果只是说为了这场比赛痛苦是没�
     <id>http://zhenghongen.cn/2012/07/03/something-about-leaderless-group/</id>
     <published>2012-07-03T06:34:35.000Z</published>
     <updated>2013-07-08T01:53:06.000Z</updated>
-    <content type="html"><![CDATA[<div>最近学弟学妹开始忙于暑期实习的事，也有一些公司到学校招聘啦。</div>
-<div>今天推荐一下我之前准备无领导小组讨论时的学习材料，希望对大家有帮助。</div>
-<div>一篇文章：</div>
-<div>《一个无领导小组面试官给大家的建议》 <a href="http://zhichang.umiwi.com/2012/0612/70916.shtml"><a href="http://zhichang.umiwi.com/2012/0612/70916.shtml">http://zhichang.umiwi.com/2012/0612/70916.shtml</a></a></div>
-<div>两个视频：</div>
-<div><a href="http://v.youku.com/v_show/id_XOTk4NjkyMDg=.html"><span style="color: #0066cc;"><a href="http://v.youku.com/v_show/id_XOTk4NjkyMDg=.html">http://v.youku.com/v_show/id_XOTk4NjkyMDg=.html</a></span></a></div>
-<div><a href="http://v.youku.com/v_show/id_XMTY4MDYyMzA4.html"><span style="color: #0066cc;"><a href="http://v.youku.com/v_show/id_XMTY4MDYyMzA4.html">http://v.youku.com/v_show/id_XMTY4MDYyMzA4.html</a></span></a></div>
-<div>我想大部分的人看完推荐的文章和视频后，大致都能对无领导小组讨论有了初步的印象，熟记里面提到的技巧和注意事项是很重要的，至于实践嘛...除了保持冷静，认真扮演好“自己”以外，我实在也想不到要讲些什么。</div>
-<div>不过，我可以分享一下，我当时参加这无领导小组的一些情况：因提前得知第二天的面试有无领导小组讨论，我临时找了资料回来学习，根据自己的性格去分析自己适合哪个角色，想来大家喜欢抢的，我不喜欢。倒是十分中意当时间控制者，而且当时想到现在带手表的人越来越少了，如果面试时，只有我带了手表，无意这个角色就只能我当了，所以...我准备了手表！哈哈！事实证明：我的想法是正确的。这个角色很名正言顺的落到我手里，我只要关键的时候提醒一下大家时间，我这个角色就算当好了，唯一的不足是：最后还有充足的时间，没及时提醒leader整理一下思路跟我们路演一下就让他汇报了。</div>
-<div>对于其他角色，我觉得推荐文章里写的很清楚了。</div>]]></content>
+    <content type="html"><![CDATA[<div>最近学弟学妹开始忙于暑期实习的事，也有一些公司到学校招聘啦。</div><br><div>今天推荐一下我之前准备无领导小组讨论时的学习材料，希望对大家有帮助。</div><br><div>一篇文章：</div><br><div>《一个无领导小组面试官给大家的建议》 <a href="http://zhichang.umiwi.com/2012/0612/70916.shtml" target="_blank"><a href="http://zhichang.umiwi.com/2012/0612/70916.shtml">http://zhichang.umiwi.com/2012/0612/70916.shtml</a></a></div><br><div>两个视频：</div><br><div><a href="http://v.youku.com/v_show/id_XOTk4NjkyMDg=.html" target="_blank"><span style="color: #0066cc;"><a href="http://v.youku.com/v_show/id_XOTk4NjkyMDg=.html">http://v.youku.com/v_show/id_XOTk4NjkyMDg=.html</a></span></a></div><br><div><a href="http://v.youku.com/v_show/id_XMTY4MDYyMzA4.html" target="_blank"><span style="color: #0066cc;"><a href="http://v.youku.com/v_show/id_XMTY4MDYyMzA4.html">http://v.youku.com/v_show/id_XMTY4MDYyMzA4.html</a></span></a></div><br><div>我想大部分的人看完推荐的文章和视频后，大致都能对无领导小组讨论有了初步的印象，熟记里面提到的技巧和注意事项是很重要的，至于实践嘛…除了保持冷静，认真扮演好“自己”以外，我实在也想不到要讲些什么。</div><br><div>不过，我可以分享一下，我当时参加这无领导小组的一些情况：因提前得知第二天的面试有无领导小组讨论，我临时找了资料回来学习，根据自己的性格去分析自己适合哪个角色，想来大家喜欢抢的，我不喜欢。倒是十分中意当时间控制者，而且当时想到现在带手表的人越来越少了，如果面试时，只有我带了手表，无意这个角色就只能我当了，所以…我准备了手表！哈哈！事实证明：我的想法是正确的。这个角色很名正言顺的落到我手里，我只要关键的时候提醒一下大家时间，我这个角色就算当好了，唯一的不足是：最后还有充足的时间，没及时提醒leader整理一下思路跟我们路演一下就让他汇报了。</div><br><div>对于其他角色，我觉得推荐文章里写的很清楚了。</div>]]></content>
     <category scheme="http://zhenghongen.cn/tags/无领导小组/" term="无领导小组"/>
     <category scheme="http://zhenghongen.cn/categories/职业职场/" term="职业职场"/>
   </entry>
@@ -391,13 +194,7 @@ P96 这场比赛已经结束了！如果只是说为了这场比赛痛苦是没�
     <id>http://zhenghongen.cn/2012/05/04/bei-da-pi-pan-reading-notes/</id>
     <published>2012-05-03T22:56:17.000Z</published>
     <updated>2013-07-08T01:53:06.000Z</updated>
-    <content type="html"><![CDATA[<div>P6 言有易，言无难：你看到一样东西可以说“有”，这很容易。但要说“无”，则必须看到所有东西才敢说。</div>
-<div>P8 我一无所有，我唯一比你们知道得多的东西，就是我知道我不知道。——苏格拉底</div>
-<div>P10 大学里学的什么专业是有用的？什么是没用的？我看最好的判断是看你想不想学。当你想学时，就说明所学的东西满足了你心灵的渴望，是“有用的”，如果所学的是个“热门专业”，那最多只能证明它对别人“有用”而已，未必对自己有用，如果缺乏兴趣就大可不必勉强。</div>
-<div>P42 你不是世界的中心，世界不会围着你转，你必须围着世界转。</div>
-<div>P71 一个人的性格就是一个人的命运。要把握自己的命运，就必须塑造自己的性格。</div>
-<div>P103 大学是一个人的心灵故乡，一生的精神账户。</div>
-<div>P104 当人意识到死的时候，才感到真正地活着。</div>]]></content>
+    <content type="html"><![CDATA[<div>P6 言有易，言无难：你看到一样东西可以说“有”，这很容易。但要说“无”，则必须看到所有东西才敢说。</div><br><div>P8 我一无所有，我唯一比你们知道得多的东西，就是我知道我不知道。——苏格拉底</div><br><div>P10 大学里学的什么专业是有用的？什么是没用的？我看最好的判断是看你想不想学。当你想学时，就说明所学的东西满足了你心灵的渴望，是“有用的”，如果所学的是个“热门专业”，那最多只能证明它对别人“有用”而已，未必对自己有用，如果缺乏兴趣就大可不必勉强。</div><br><div>P42 你不是世界的中心，世界不会围着你转，你必须围着世界转。</div><br><div>P71 一个人的性格就是一个人的命运。要把握自己的命运，就必须塑造自己的性格。</div><br><div>P103 大学是一个人的心灵故乡，一生的精神账户。</div><br><div>P104 当人意识到死的时候，才感到真正地活着。</div>]]></content>
     <category scheme="http://zhenghongen.cn/tags/我的读书笔记/" term="我的读书笔记"/>
     <category scheme="http://zhenghongen.cn/categories/读书笔记/" term="读书笔记"/>
   </entry>
@@ -406,21 +203,13 @@ P96 这场比赛已经结束了！如果只是说为了这场比赛痛苦是没�
     <link href="http://zhenghongen.cn/2012/04/30/blog-theme-change-to-weisay-simple/"/>
     <id>http://zhenghongen.cn/2012/04/30/blog-theme-change-to-weisay-simple/</id>
     <published>2012-04-29T23:52:57.000Z</published>
-    <updated>2013-07-08T01:53:06.000Z</updated>
+    <updated>2013-10-02T05:14:33.000Z</updated>
     <content type="html"><![CDATA[<p>淡蓝色，简约但大气。</p>
 <p>很不错的一个主题。不过因为这个博客现在内容还比较少，感觉没完全发挥这个主题的功能。得多努力呢！</p>
 <p>喜欢这个主题的朋友可以到以下地址下载哟~~~</p>
-<p><a href="http://www.weisay.com/blog/wordpress-theme-weisay-simple.html"><a href="http://www.weisay.com/blog/wordpress-theme-weisay-simple.html">http://www.weisay.com/blog/wordpress-theme-weisay-simple.html</a></a></p>
-<p><a href="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/04/QQ截图201204301555051.png"><img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/04/QQ截图201204301555051-300x187.png" alt="Weisay Simple" title="Weisay Simple"></a></p>
-<p><dl id="attachment_91" class="wp-caption alignnone" style="width: 310px;"><dt class="wp-caption-dt"></dt><dd class="wp-caption-dd">weisay-simple</dd></dl></div>
-&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-]]></content>
+<p><a href="http://www.weisay.com/blog/wordpress-theme-weisay-simple.html" target="_blank"><a href="http://www.weisay.com/blog/wordpress-theme-weisay-simple.html">http://www.weisay.com/blog/wordpress-theme-weisay-simple.html</a></a></p>
+<p><a href="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/04/QQ截图201204301555051.png" target="_blank"><img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/04/QQ截图201204301555051-300x187.png" alt="Weisay Simple" title="Weisay Simple"></a></p>
+<dl id="attachment_91" class="wp-caption alignnone" style="width: 310px;"><dt class="wp-caption-dt"></dt><dd class="wp-caption-dd">weisay-simple</dd></dl>]]></content>
     <category scheme="http://zhenghongen.cn/tags/主题/" term="主题"/>
     <category scheme="http://zhenghongen.cn/categories/站点更新/" term="站点更新"/>
   </entry>
@@ -430,87 +219,7 @@ P96 这场比赛已经结束了！如果只是说为了这场比赛痛苦是没�
     <id>http://zhenghongen.cn/2012/04/28/20-ji-sui-chi-mi-yu-ren-mai-ba-reading-notes/</id>
     <published>2012-04-28T04:20:39.000Z</published>
     <updated>2013-07-08T01:53:06.000Z</updated>
-    <content type="html"><![CDATA[<div>P6 年轻的时候即使你身无分文，也应该建立优秀的人脉。正如水的形状取决于盛水的器皿想形状一样，人的命运取决于结交什么样的朋友。——日本朝日啤酒前总裁 广口樋太郎</div>
-<div>20几岁呢积累下的人际关系网是人一生中的珍贵财富。</div>
-<div>与他人交往的方式可以决定一个人的未来。</div>
-<div>P35 结交朋友最恰当的时期是在你感到需要朋友之前。 —— 马克·吐温</div>
-<div>P37 真正的人际交往不是看“我从对方处能得到什么”，而是看“我能给对方提供什么”。</div>
-<div>P39 不要成为被别人感谢的人，请成为随时被别人需要的人。——韩国人脉管理研究中心负责人 李泰归</div>
-<div>没有人脉的事业不不存在的。——CNN创始人，“媒体国王”爱德华·泰纳</div>
-<a name="more"></a>
-<div>P10 人脉管理并不是只投入精力和金钱就能短时间见效的事情，所以，应该将结交“圈内人”这样的思想，应用于日常生活之中，并不断对自己的人际关系管理方面的知识和能力进行查漏补缺。</div>
-<div>P30 二十岁的人生目标不是金钱上的富有，而是“人缘”上的富有。</div>
-<div>P41 以平等的地位帮助别人才是开启人脉管理成功之门的钥匙。</div>
-<div>P63 如果对他人的给予比对他人的期待更多的话，您所得到的将会比您所期待的更多。</div>
-<div>P83 人际关系可以代表一个人的生活的全部。</div>
-<div>P133 社会是一个人们相互协调生活的地方，我们如果没有和他人接触的话，一天都画不下去。所以，我们不得不认证人际关系的重要性。这个道理在学校是学不到的，所以很多人为此走上了很多弯路，经历了很多失败和挫折。在社会上，只有比率很小的人领悟到了调节人际关系的原理，大多数人生平都不知其真正奥秘所在，匆匆走完一生。——卡耐基</div>
-<div>P139 所有业绩的出发点都是由于欲望的产生，就像柴火不足的话，不够温软一样，欲望不够强烈的话，果实也不会丰硕。——拿破仑</div>
-&nbsp;
-<div>P144 无用之徒即使遇到有缘之人，也无法辨识其中的缘分，普通人能够辨识有缘人，但是不懂得如何抓住这种缘分，优秀的人即使是擦角而过的缘分也能抓得住。——日本某族家训</div>
-<div>P236 思想决定行动，重复的行动决定习惯，习惯决定性格，性格决定命运。</div>
-<div><strong>人脉管理理念</strong></div>
-<div>1.为了寻找更多的话题，尽量多涉猎各个领域的知识。</div>
-<div>2.与他人的谈话是一种机遇，熟练掌握抓住说话气氛的技法。</div>
-<div>3.多接触有吸引力的人，并积极向他们学习。</div>
-<div>4.尽量多参加聚会，包括朋友或熟人介绍的聚会。</div>
-<div>5.不要只以眼前的小利益为目的参加聚会。</div>
-<div>6.举办或参加有主题的聚会，和成员之间建立真实可靠的人际关系。</div>
-<div>7.放低姿态，首先为他人着想，恩惠才会加倍找回来。</div>
-<div>8.学会关怀和倾听。</div>
-<div>9.找到自己的偶像，积极向其学习，并将学习的东西灵活地为己所用。</div>
-<div>10.没有偶像目标的话，可以通过信件、电子邮件或他人介绍积极寻砸后并接触。</div>
-<div>11.不要太国语急于和自己的偶像简历亲密的人际关系。</div>
-<div>12.比起单纯的接受来说，相互给予与接受才是可取之道。</div>
-<div>13.给他人6次帮助，获得别人4次帮助。</div>
-<div>14.给予更对的话，便能比预期得到更多。</div>
-<div>15.应在他人身处困境事，不求回报地尽力帮助他人。</div>
-<div>16.在学校、公司或聚会里，如果遇到涉及自己领域外的其他领域需要自己去参与的话，应该要像对待自己领域内的事情一样全力以赴。</div>
-<div>17.一定要深刻感受到人脉管理的必要性。</div>
-<div>18.请试着像邻座的人问好。</div>
-<div>19.充满热情，没有热情就没有开始。</div>
-<div><strong>二十岁作于的年轻人必须要知道的，关于榜样所应具备的5大要素</strong></div>
-<div>1.有很丰富的经验或者是某领域最具权威的专家。</div>
-<div>2.拥有冷静的头脑和美好的心灵。</div>
-<div>3.懂得肯定他人且带人宽容。</div>
-<div>4.知道关怀他人，懂得倾听他人。</div>
-<div>5.能够给你足够的建议和指导，并能够引导你的积极性。</div>
-<div><strong>对榜样必须履行的5大义务</strong></div>
-<div>1.有积极向他学习的态度</div>
-<div>2.要谦逊，不耻下问</div>
-<div>3.学习并实践，将其变为自己的东西</div>
-<div>4.向自己的榜样展示自己的小成就</div>
-<div>5.尊敬并感谢他</div>
-<div><strong>论坛运营小技巧</strong></div>
-<div>1.用电子邮件定期性地转达杂志上的一些有用的信息。</div>
-<div>2.经常举办一些优惠活动（免费读书活动，赠券活动等）</div>
-<div>3.定期举办会员见面会。</div>
-<div>4.请有名的人士讲课。</div>
-<div>5.真诚回答会员或者过客的提问。</div>
-<div><strong>人脉管理高手的10个共同点：</strong></div>
-<div>1.首先提高自己的教养和素质。</div>
-<div>2.即使是很小的约定，也一定要遵守。</div>
-<div>3.按时守时。</div>
-<div>4.把与他人相遇当成是一种缘分，要珍惜这种缘分，并真诚对待。</div>
-<div>5.善于表现自己。</div>
-<div>6.善于和长辈沟通，并与长辈和谐相处。</div>
-<div>7.善于组织或开展论坛和聚会。</div>
-<div>8.善于给予和帮助。</div>
-<div>9.善于倾听他人。</div>
-<div>10.待人一定要真诚。</div>
-<div><strong>给他人留下好的初次印象的5个共同点：</strong></div>
-<div>第一、看着对方的眼睛慢慢地与对方说话；</div>
-<div>第二、充满智慧；</div>
-<div>第三、虚心学习的态度，认真倾听他人讲话；</div>
-<div>第四、对晚辈也很有礼貌；</div>
-<div>第五、生活态度积极，好奇心强。</div>
-<div><strong>塑造好多 初次印象的7大秘诀</strong></div>
-<div>1.风趣幽默，把对方逗乐；</div>
-<div>2.对对方充满好感；</div>
-<div>3.给他人留下深刻印象；</div>
-<div>4.不要炫耀自己；</div>
-<div>5.初次见面不要将问号省略掉；</div>
-<div>6.不要指出对方缺点；</div>
-<div>7.寻找共同点</div>]]></content>
+    <content type="html"><![CDATA[<div>P6 年轻的时候即使你身无分文，也应该建立优秀的人脉。正如水的形状取决于盛水的器皿想形状一样，人的命运取决于结交什么样的朋友。——日本朝日啤酒前总裁 广口樋太郎</div><br><div>20几岁呢积累下的人际关系网是人一生中的珍贵财富。</div><br><div>与他人交往的方式可以决定一个人的未来。</div><br><div>P35 结交朋友最恰当的时期是在你感到需要朋友之前。 —— 马克·吐温</div><br><div>P37 真正的人际交往不是看“我从对方处能得到什么”，而是看“我能给对方提供什么”。</div><br><div>P39 不要成为被别人感谢的人，请成为随时被别人需要的人。——韩国人脉管理研究中心负责人 李泰归</div><br><div>没有人脉的事业不不存在的。——CNN创始人，“媒体国王”爱德华·泰纳</div><br><a id="more"></a><br><div>P10 人脉管理并不是只投入精力和金钱就能短时间见效的事情，所以，应该将结交“圈内人”这样的思想，应用于日常生活之中，并不断对自己的人际关系管理方面的知识和能力进行查漏补缺。</div><br><div>P30 二十岁的人生目标不是金钱上的富有，而是“人缘”上的富有。</div><br><div>P41 以平等的地位帮助别人才是开启人脉管理成功之门的钥匙。</div><br><div>P63 如果对他人的给予比对他人的期待更多的话，您所得到的将会比您所期待的更多。</div><br><div>P83 人际关系可以代表一个人的生活的全部。</div><br><div>P133 社会是一个人们相互协调生活的地方，我们如果没有和他人接触的话，一天都画不下去。所以，我们不得不认证人际关系的重要性。这个道理在学校是学不到的，所以很多人为此走上了很多弯路，经历了很多失败和挫折。在社会上，只有比率很小的人领悟到了调节人际关系的原理，大多数人生平都不知其真正奥秘所在，匆匆走完一生。——卡耐基</div><br><div>P139 所有业绩的出发点都是由于欲望的产生，就像柴火不足的话，不够温软一样，欲望不够强烈的话，果实也不会丰硕。——拿破仑</div><br>&nbsp;<br><div>P144 无用之徒即使遇到有缘之人，也无法辨识其中的缘分，普通人能够辨识有缘人，但是不懂得如何抓住这种缘分，优秀的人即使是擦角而过的缘分也能抓得住。——日本某族家训</div><br><div>P236 思想决定行动，重复的行动决定习惯，习惯决定性格，性格决定命运。</div><br><div><strong>人脉管理理念</strong></div><br><div>1.为了寻找更多的话题，尽量多涉猎各个领域的知识。</div><br><div>2.与他人的谈话是一种机遇，熟练掌握抓住说话气氛的技法。</div><br><div>3.多接触有吸引力的人，并积极向他们学习。</div><br><div>4.尽量多参加聚会，包括朋友或熟人介绍的聚会。</div><br><div>5.不要只以眼前的小利益为目的参加聚会。</div><br><div>6.举办或参加有主题的聚会，和成员之间建立真实可靠的人际关系。</div><br><div>7.放低姿态，首先为他人着想，恩惠才会加倍找回来。</div><br><div>8.学会关怀和倾听。</div><br><div>9.找到自己的偶像，积极向其学习，并将学习的东西灵活地为己所用。</div><br><div>10.没有偶像目标的话，可以通过信件、电子邮件或他人介绍积极寻砸后并接触。</div><br><div>11.不要太国语急于和自己的偶像简历亲密的人际关系。</div><br><div>12.比起单纯的接受来说，相互给予与接受才是可取之道。</div><br><div>13.给他人6次帮助，获得别人4次帮助。</div><br><div>14.给予更对的话，便能比预期得到更多。</div><br><div>15.应在他人身处困境事，不求回报地尽力帮助他人。</div><br><div>16.在学校、公司或聚会里，如果遇到涉及自己领域外的其他领域需要自己去参与的话，应该要像对待自己领域内的事情一样全力以赴。</div><br><div>17.一定要深刻感受到人脉管理的必要性。</div><br><div>18.请试着像邻座的人问好。</div><br><div>19.充满热情，没有热情就没有开始。</div><br><div><strong>二十岁作于的年轻人必须要知道的，关于榜样所应具备的5大要素</strong></div><br><div>1.有很丰富的经验或者是某领域最具权威的专家。</div><br><div>2.拥有冷静的头脑和美好的心灵。</div><br><div>3.懂得肯定他人且带人宽容。</div><br><div>4.知道关怀他人，懂得倾听他人。</div><br><div>5.能够给你足够的建议和指导，并能够引导你的积极性。</div><br><div><strong>对榜样必须履行的5大义务</strong></div><br><div>1.有积极向他学习的态度</div><br><div>2.要谦逊，不耻下问</div><br><div>3.学习并实践，将其变为自己的东西</div><br><div>4.向自己的榜样展示自己的小成就</div><br><div>5.尊敬并感谢他</div><br><div><strong>论坛运营小技巧</strong></div><br><div>1.用电子邮件定期性地转达杂志上的一些有用的信息。</div><br><div>2.经常举办一些优惠活动（免费读书活动，赠券活动等）</div><br><div>3.定期举办会员见面会。</div><br><div>4.请有名的人士讲课。</div><br><div>5.真诚回答会员或者过客的提问。</div><br><div><strong>人脉管理高手的10个共同点：</strong></div><br><div>1.首先提高自己的教养和素质。</div><br><div>2.即使是很小的约定，也一定要遵守。</div><br><div>3.按时守时。</div><br><div>4.把与他人相遇当成是一种缘分，要珍惜这种缘分，并真诚对待。</div><br><div>5.善于表现自己。</div><br><div>6.善于和长辈沟通，并与长辈和谐相处。</div><br><div>7.善于组织或开展论坛和聚会。</div><br><div>8.善于给予和帮助。</div><br><div>9.善于倾听他人。</div><br><div>10.待人一定要真诚。</div><br><div><strong>给他人留下好的初次印象的5个共同点：</strong></div><br><div>第一、看着对方的眼睛慢慢地与对方说话；</div><br><div>第二、充满智慧；</div><br><div>第三、虚心学习的态度，认真倾听他人讲话；</div><br><div>第四、对晚辈也很有礼貌；</div><br><div>第五、生活态度积极，好奇心强。</div><br><div><strong>塑造好多 初次印象的7大秘诀</strong></div><br><div>1.风趣幽默，把对方逗乐；</div><br><div>2.对对方充满好感；</div><br><div>3.给他人留下深刻印象；</div><br><div>4.不要炫耀自己；</div><br><div>5.初次见面不要将问号省略掉；</div><br><div>6.不要指出对方缺点；</div><br><div>7.寻找共同点</div>]]></content>
     <category scheme="http://zhenghongen.cn/tags/人脉管理/" term="人脉管理"/>
     <category scheme="http://zhenghongen.cn/tags/我的读书笔记/" term="我的读书笔记"/>
     <category scheme="http://zhenghongen.cn/categories/读书笔记/" term="读书笔记"/>
@@ -521,29 +230,7 @@ P96 这场比赛已经结束了！如果只是说为了这场比赛痛苦是没�
     <id>http://zhenghongen.cn/2012/03/18/shui-tou-zou-le-wo-de-shi-jian-reading-notes/</id>
     <published>2012-03-18T05:22:55.000Z</published>
     <updated>2013-07-08T01:53:06.000Z</updated>
-    <content type="html"><![CDATA[<p>前言
-。成功的时间管理取决于正确的态度、持之以恒的决心，而不是靠精湛的技巧或是哗众取宠的方法。
-第一章
-P5不论时间流逝得快还是慢，我们都不能把它截住，不能把它储存起来，但我们可以有意义地、积极地利用它。
-切记：今天是你余生开始的第一天！
-P8抽点儿时间
-。抽点时间工作，这是成功的代价。
-。抽点时间思考，这是力量的源泉。
-。抽点儿时间娱乐，这是年轻的秘诀。<a name="more"></a>
-。抽点儿时间读书，这是知识的基础。
-。抽点儿时间对人表示有善，这是通向幸福的大门。
-。抽点儿时间梦想，这是通往成功的捷径。
-。抽点儿时间关爱，这是真正的生活乐趣。
-。抽点儿时间快乐，这是心灵的音乐。
-。抽点儿时间享受，这是对自己辛劳的奖赏。
-。抽点儿时间作计划，你就可以享受上述9种快乐。
-P18如果我们在生活中同时扮演多种角色，就会出现时间分配的问题，我们就永远不会当主角，而只能充当一个配角而已。
-P20放弃所有无助于实现自己目标的次要角色，专注于自己的主要角色和自己喜欢的角色。
-P20把你的主要角色减少到你完
-全胜任的七个，摒弃其余的角色。
-P20专注于主要事件，是轻松和成功生活的秘诀。
-第二章
-P27目标是衡量一个人行为的尺度。</p>
+    <content type="html"><![CDATA[<p>前言<br>。成功的时间管理取决于正确的态度、持之以恒的决心，而不是靠精湛的技巧或是哗众取宠的方法。<br>第一章<br>P5不论时间流逝得快还是慢，我们都不能把它截住，不能把它储存起来，但我们可以有意义地、积极地利用它。<br>切记：今天是你余生开始的第一天！<br>P8抽点儿时间<br>。抽点时间工作，这是成功的代价。<br>。抽点时间思考，这是力量的源泉。<br>。抽点儿时间娱乐，这是年轻的秘诀。<a id="more"></a><br>。抽点儿时间读书，这是知识的基础。<br>。抽点儿时间对人表示有善，这是通向幸福的大门。<br>。抽点儿时间梦想，这是通往成功的捷径。<br>。抽点儿时间关爱，这是真正的生活乐趣。<br>。抽点儿时间快乐，这是心灵的音乐。<br>。抽点儿时间享受，这是对自己辛劳的奖赏。<br>。抽点儿时间作计划，你就可以享受上述9种快乐。<br>P18如果我们在生活中同时扮演多种角色，就会出现时间分配的问题，我们就永远不会当主角，而只能充当一个配角而已。<br>P20放弃所有无助于实现自己目标的次要角色，专注于自己的主要角色和自己喜欢的角色。<br>P20把你的主要角色减少到你完<br>全胜任的七个，摒弃其余的角色。<br>P20专注于主要事件，是轻松和成功生活的秘诀。<br>第二章<br>P27目标是衡量一个人行为的尺度。</p>
 <p>P39按照工作生活平衡原则，将人生四大范畴纳入你的计划：身体/健康、精神/文化、家庭/社会、成就/工作。</p>
 <p>P45做好时间计划能带来什么好处？</p>
 <p>·可以更快更好地实现工作及生活目标。</p>
@@ -572,7 +259,7 @@ P27目标是衡量一个人行为的尺度。</p>
 <p>9.打电话要找对时机</p>
 <p>10.完成了工作就取得了成功！奖赏自己和他人！</p>
 <p>&nbsp;</p>
-<div><a href="http://www.wiz.cn/" title="Wiz">通过 Wiz 发布</a></div>]]></content>
+<div><a href="http://www.wiz.cn/" title="Wiz" target="_blank">通过 Wiz 发布</a></div>]]></content>
     <category scheme="http://zhenghongen.cn/tags/我的读书笔记/" term="我的读书笔记"/>
     <category scheme="http://zhenghongen.cn/tags/时间管理/" term="时间管理"/>
     <category scheme="http://zhenghongen.cn/categories/读书笔记/" term="读书笔记"/>
@@ -583,28 +270,7 @@ P27目标是衡量一个人行为的尺度。</p>
     <id>http://zhenghongen.cn/2012/03/01/shu-dian-de-deng-guang-reading-notes/</id>
     <published>2012-03-01T05:20:04.000Z</published>
     <updated>2013-07-08T01:53:06.000Z</updated>
-    <content type="html"><![CDATA[<div>第一章</div>
-<div>P3    当书店开门迎客，世界的其它部分也随之而来，当天的气候，当天到新闻，接踵的顾客，成箱的书，以及那书中的世界——记载事实的书和阐述真理的书，新出版的书和已被读过数代的书，极其重要的书和绝对平庸的书。</div>
-<div>P4    书不是那种急功近利的产品，它们需要时间；写书很慢，出书很慢，读书也很慢。</div>
-<a name="more"></a>
-<div>P5    书店是“在人群中独处”的地方。</div>
-<div>P6    书店向来是交换时代思想的市场，在塑造公众话语方面起到促成的作用。</div>
-<div>P8    书经久耐看，可以用而无损。书不需要燃料、食物或服务；它既不会自己弄脏也不会闹出动静。书可以反复读，然后传给朋友，或再卖掉。书不易碎，不怕冻，沾满沙子也照样能读。即使掉到浴缸里，晾干了，熨平了，就万事大吉。如果书脊开裂了，书页掉了，只要在一阵风光顾前将它们整理好，用胶带粘上就行。</div>
-<div>书的平民性质中最重要的是：除了识字外，看书不需要其他特别的训练。</div>
-<div>P20    我一直认为：图书承载着我们的思想和想像，使他们充实人间；一个书店就是一座城市，我们日臻完善的精神自我居住其中。</div>
-<div>P27    书籍是朋友，我们并不孤独。</div>
-<div>第二章</div>
-<div>P50    一本书最重要的是具有强烈的吸引力，将读者引入阅读的情色空间，在那里大脑兴奋而肉体放松。</div>
-<div>第七章</div>
-<div>P133    如果一个人从五岁起每周读一本书，活到80岁，最多可以读3900本书。</div>
-<div>P134    现在旧金山的一张电影票是10美元。满打满算，两个小时以后，这笔钱也就成了你的记忆，除非你再掏20美元买一张DVD。而一本400页的图书大概要8小时才能读完。一旦你买了这本书，它就归了你，可以由着你的性子做上标记，翻看在你的脑海里涌动的精彩章节。</div>
-<div>P135    图书的应用远比电影活泛，更人性化。读者可以随意沉溺其中，不用电，而且还知道在书的哪些部分，一半，三分之一处，离结尾还有多少页，读者的手指帮忙测量距真相大白的时刻。看电影时可以通过慢放看清画面，但总有一种不真是感觉；而慢慢阅读某个章节并不会使那些文字失去力量。</div>
-<div>第八章</div>
-<div>P159    莎士比亚书店也是一家收费图书馆，顾客付费注册后可以一次借阅三本图书，借期可达三周；注册期一般分三个月，六个月或十二个月。</div>
-<div>第十章</div>
-<div>P216    然而网络书店造成了读者与书籍之间的疏离，它排除了传统书店一直传播的那些愉悦。</div>
-<div></div>
-<div><a href="http://www.wiz.cn/" title="Wiz">通过 Wiz 发布</a></div>]]></content>
+    <content type="html"><![CDATA[<div>第一章</div><br><div>P3    当书店开门迎客，世界的其它部分也随之而来，当天的气候，当天到新闻，接踵的顾客，成箱的书，以及那书中的世界——记载事实的书和阐述真理的书，新出版的书和已被读过数代的书，极其重要的书和绝对平庸的书。</div><br><div>P4    书不是那种急功近利的产品，它们需要时间；写书很慢，出书很慢，读书也很慢。</div><br><a id="more"></a><br><div>P5    书店是“在人群中独处”的地方。</div><br><div>P6    书店向来是交换时代思想的市场，在塑造公众话语方面起到促成的作用。</div><br><div>P8    书经久耐看，可以用而无损。书不需要燃料、食物或服务；它既不会自己弄脏也不会闹出动静。书可以反复读，然后传给朋友，或再卖掉。书不易碎，不怕冻，沾满沙子也照样能读。即使掉到浴缸里，晾干了，熨平了，就万事大吉。如果书脊开裂了，书页掉了，只要在一阵风光顾前将它们整理好，用胶带粘上就行。</div><br><div>书的平民性质中最重要的是：除了识字外，看书不需要其他特别的训练。</div><br><div>P20    我一直认为：图书承载着我们的思想和想像，使他们充实人间；一个书店就是一座城市，我们日臻完善的精神自我居住其中。</div><br><div>P27    书籍是朋友，我们并不孤独。</div><br><div>第二章</div><br><div>P50    一本书最重要的是具有强烈的吸引力，将读者引入阅读的情色空间，在那里大脑兴奋而肉体放松。</div><br><div>第七章</div><br><div>P133    如果一个人从五岁起每周读一本书，活到80岁，最多可以读3900本书。</div><br><div>P134    现在旧金山的一张电影票是10美元。满打满算，两个小时以后，这笔钱也就成了你的记忆，除非你再掏20美元买一张DVD。而一本400页的图书大概要8小时才能读完。一旦你买了这本书，它就归了你，可以由着你的性子做上标记，翻看在你的脑海里涌动的精彩章节。</div><br><div>P135    图书的应用远比电影活泛，更人性化。读者可以随意沉溺其中，不用电，而且还知道在书的哪些部分，一半，三分之一处，离结尾还有多少页，读者的手指帮忙测量距真相大白的时刻。看电影时可以通过慢放看清画面，但总有一种不真是感觉；而慢慢阅读某个章节并不会使那些文字失去力量。</div><br><div>第八章</div><br><div>P159    莎士比亚书店也是一家收费图书馆，顾客付费注册后可以一次借阅三本图书，借期可达三周；注册期一般分三个月，六个月或十二个月。</div><br><div>第十章</div><br><div>P216    然而网络书店造成了读者与书籍之间的疏离，它排除了传统书店一直传播的那些愉悦。</div><br><div></div><br><div><a href="http://www.wiz.cn/" title="Wiz" target="_blank">通过 Wiz 发布</a></div>]]></content>
     <category scheme="http://zhenghongen.cn/tags/书店/" term="书店"/>
     <category scheme="http://zhenghongen.cn/tags/我的读书笔记/" term="我的读书笔记"/>
     <category scheme="http://zhenghongen.cn/categories/读书笔记/" term="读书笔记"/>
@@ -615,50 +281,7 @@ P27目标是衡量一个人行为的尺度。</p>
     <id>http://zhenghongen.cn/2012/02/26/xiao-qiang-sheng-zhi-ji-reading-notes/</id>
     <published>2012-02-26T07:05:49.000Z</published>
     <updated>2013-07-08T01:53:06.000Z</updated>
-    <content type="html"><![CDATA[<div>前一个礼拜看完这本书，对GTD有了一个初步的了解，里面传授的知识通俗易懂，但是，GTD并不是靠一本就能学会的，最重要的是实践！有计划地实行！</div>
-<div>======================================================================</div>
-<div>前言</div>
-<div>P1    成功的人每天都在忙碌，平庸的人每天也在忙碌，而时间对每个人来说是绝对公平的。</div>
-<div>P1    当你亲手做出一个小雪团（核心）之后，放在雪地里一滚，这个小雪团就会附着、吸收周围很多的雪，你最终将获得一个大雪球；而如果你知识漫无目的地在雪地里踱步，走得再勤快，你的收获也只有鞋底的一点点雪而已。所以说，擅长滚雪球的人比较容易成功，成功的关键在于构建自己的核心。</div>
-<a name="more"></a>
-<div>P2    人与人之间的竞争是成熟度的竞争，谁开窍早，谁就会占得先机。你有没有考虑过，你的机遇到哪里去了？是谁获得了更多升迁的机会？是谁拥有更平和的心态？是谁更加左右逢源？答案就是比你更成熟的人。因为他们成长得更迅速，更会吸取资源、编织人脉、处理工作和生活，从而更早地做好了迎接机遇的准备，而机遇只会眷顾那些有准备的人。</div>
-<div>P2    成熟意味着什么？意味着确定的价值观、顺畅的时间管理，以及属于自己的处世哲学。</div>
-<div>第一章</div>
-<div>P3    ‘确实很忙’的人分两种：一种是具备时间管理技能和目标管理技能的人，另一种则是不具备这些技能的人。前一种人用20%的时间完成了后一种人用80%的时间才能完成的事情，因此前一种人忙着考虑如何打发闲暇的时间，后一种人则忙着煮方便面和熬夜。</div>
-<div>P10    衡量一件事情是不是有意义，主要是看我们投入时间之后是否有预期的产出。如果达到了羽蕲效果，那么你投入的时间就是有意义的，否则就是浪费时间。</div>
-<div>P11    当你的注意力被打断之后。想要重新集中起注意力至少需要15分钟；如果你的思路被打断的话，那你可能与iPad这样的伟大创意擦肩而过。</div>
-<div>P23    所谓的价值观是指一个人对周围的客观事物（包括人、事、物）的意义、重要性的总评价和总看法。</div>
-<div>P24    价值观没有对错之分，每个人在自己的人生路上都有自己的走法。</div>
-<div>第二张</div>
-<div>P32    史蒂芬·柯维（Stephen R.Covey ）</div>
-<div>P45    时间管理的三大杀手-——拖延、犹豫不决、目标不明确。</div>
-<div>P50    巴菲特的“五大投资原则”：找出杰出的公司、少就是多、押大赌注于高概率事件上、要有耐心、不要担心短期价格波动。</div>
-<div>P51    如果你不清理掉那1%的大石头，即使清理掉了99%的小石头也是没有用的。</div>
-<div>P55    脑袋里如果每次只装一件事，可以将我从周围嘈杂的环境和沉重的压力解脱出来。</div>
-<div>P58    什么是行动？行动就是可执行的步骤。</div>
-<div>P59    “下一步行动”：任何已经确定的、需要2分钟以上才能解决的下一个单一行动。</div>
-<div>P82    工作是谋求更好生活的途径，追求无压、流畅、高效的工作。</div>
-<div>第三章</div>
-<div>P90    请记住，阻挡你的障碍必有其原因！这道墙并不是为了阻止我们，这道墙让我们有机会展现自己有多想达到这目标。这道墙是为了阻止那些不够渴望的人，是为了阻挡那些不够热爱生活的人而存在。 ——兰迪·波许（Randy Pausch）</div>
-<div>P93    S.M.A.R.T：</div>
-<div>          Specific，具体的；</div>
-<div>          Measurable，可测量的；</div>
-<div>          Attainable，可实现的；</div>
-<div>          Realistic，可实行的；</div>
-<div>          Timebased，时间线。</div>
-<div>P101    时间，是一个非常奇怪的东西，当你想挥霍他的时候，它会尽量地满足你，让你觉得时间怎么挥霍都用不完。但是，当你想要珍惜它的时候，它又会特别地吝啬，让你觉得时光飞逝，转眼已是尽头。</div>
-<div>P109    优秀的人有优秀的系统，普通的人有普通的系统，失败的人没有系统！</div>
-<div>第四章</div>
-<div>P121    所谓的时间管理、所谓的高效工作、所谓的无压工作，并不是要让你在单位时间内完成比以前更多的事情，而是能让你把握住重点，保持平和的心态。要知道，工作只是谋求更好生活的一种途径而已，千万不要本末倒置。</div>
-<div>第五章</div>
-<div>P155    人生就像是在雪地里行走，向后看，是自己一路走来的轨迹；向前看，是白茫茫的一片。不要问“该往哪走”，只要回答“想往哪走”。自己的双脚就是书写历史的工具。</div>
-<div>第六章</div>
-<div>P178    成长，靠的不是聪明。成功，靠的也不是聪明。其实，任何人成长的力量，都来自自己的内心，别人、书本以及环境，都只是起到启发的作用。</div>
-<div>P181    用80%的时间思考，20%的时间做事。</div>
-<div>P183    做20%的事情，创造80%的产出。</div>
-<div>P202    生活离不开情绪，它是对外面世界正常的心理反应，我们要做的只是不让自己成为情绪的奴隶，不能让那些消极的心境左右我们的生活。</div>
-<div>P209    原来不是所有的东西都要靠学习才会的，有些东西当你站在某个高度、某个角度的时候，自然就会了；当你成长到一定程度的时候，就自然地成熟了。</div>
-<div><a href="http://www.wiz.cn/" title="Wiz">通过 Wiz 发布</a></div>]]></content>
+    <content type="html"><![CDATA[<div>前一个礼拜看完这本书，对GTD有了一个初步的了解，里面传授的知识通俗易懂，但是，GTD并不是靠一本就能学会的，最重要的是实践！有计划地实行！</div><br><div>======================================================================</div><br><div>前言</div><br><div>P1    成功的人每天都在忙碌，平庸的人每天也在忙碌，而时间对每个人来说是绝对公平的。</div><br><div>P1    当你亲手做出一个小雪团（核心）之后，放在雪地里一滚，这个小雪团就会附着、吸收周围很多的雪，你最终将获得一个大雪球；而如果你知识漫无目的地在雪地里踱步，走得再勤快，你的收获也只有鞋底的一点点雪而已。所以说，擅长滚雪球的人比较容易成功，成功的关键在于构建自己的核心。</div><br><a id="more"></a><br><div>P2    人与人之间的竞争是成熟度的竞争，谁开窍早，谁就会占得先机。你有没有考虑过，你的机遇到哪里去了？是谁获得了更多升迁的机会？是谁拥有更平和的心态？是谁更加左右逢源？答案就是比你更成熟的人。因为他们成长得更迅速，更会吸取资源、编织人脉、处理工作和生活，从而更早地做好了迎接机遇的准备，而机遇只会眷顾那些有准备的人。</div><br><div>P2    成熟意味着什么？意味着确定的价值观、顺畅的时间管理，以及属于自己的处世哲学。</div><br><div>第一章</div><br><div>P3    ‘确实很忙’的人分两种：一种是具备时间管理技能和目标管理技能的人，另一种则是不具备这些技能的人。前一种人用20%的时间完成了后一种人用80%的时间才能完成的事情，因此前一种人忙着考虑如何打发闲暇的时间，后一种人则忙着煮方便面和熬夜。</div><br><div>P10    衡量一件事情是不是有意义，主要是看我们投入时间之后是否有预期的产出。如果达到了羽蕲效果，那么你投入的时间就是有意义的，否则就是浪费时间。</div><br><div>P11    当你的注意力被打断之后。想要重新集中起注意力至少需要15分钟；如果你的思路被打断的话，那你可能与iPad这样的伟大创意擦肩而过。</div><br><div>P23    所谓的价值观是指一个人对周围的客观事物（包括人、事、物）的意义、重要性的总评价和总看法。</div><br><div>P24    价值观没有对错之分，每个人在自己的人生路上都有自己的走法。</div><br><div>第二张</div><br><div>P32    史蒂芬·柯维（Stephen R.Covey ）</div><br><div>P45    时间管理的三大杀手-——拖延、犹豫不决、目标不明确。</div><br><div>P50    巴菲特的“五大投资原则”：找出杰出的公司、少就是多、押大赌注于高概率事件上、要有耐心、不要担心短期价格波动。</div><br><div>P51    如果你不清理掉那1%的大石头，即使清理掉了99%的小石头也是没有用的。</div><br><div>P55    脑袋里如果每次只装一件事，可以将我从周围嘈杂的环境和沉重的压力解脱出来。</div><br><div>P58    什么是行动？行动就是可执行的步骤。</div><br><div>P59    “下一步行动”：任何已经确定的、需要2分钟以上才能解决的下一个单一行动。</div><br><div>P82    工作是谋求更好生活的途径，追求无压、流畅、高效的工作。</div><br><div>第三章</div><br><div>P90    请记住，阻挡你的障碍必有其原因！这道墙并不是为了阻止我们，这道墙让我们有机会展现自己有多想达到这目标。这道墙是为了阻止那些不够渴望的人，是为了阻挡那些不够热爱生活的人而存在。 ——兰迪·波许（Randy Pausch）</div><br><div>P93    S.M.A.R.T：</div><br><div>          Specific，具体的；</div><br><div>          Measurable，可测量的；</div><br><div>          Attainable，可实现的；</div><br><div>          Realistic，可实行的；</div><br><div>          Timebased，时间线。</div><br><div>P101    时间，是一个非常奇怪的东西，当你想挥霍他的时候，它会尽量地满足你，让你觉得时间怎么挥霍都用不完。但是，当你想要珍惜它的时候，它又会特别地吝啬，让你觉得时光飞逝，转眼已是尽头。</div><br><div>P109    优秀的人有优秀的系统，普通的人有普通的系统，失败的人没有系统！</div><br><div>第四章</div><br><div>P121    所谓的时间管理、所谓的高效工作、所谓的无压工作，并不是要让你在单位时间内完成比以前更多的事情，而是能让你把握住重点，保持平和的心态。要知道，工作只是谋求更好生活的一种途径而已，千万不要本末倒置。</div><br><div>第五章</div><br><div>P155    人生就像是在雪地里行走，向后看，是自己一路走来的轨迹；向前看，是白茫茫的一片。不要问“该往哪走”，只要回答“想往哪走”。自己的双脚就是书写历史的工具。</div><br><div>第六章</div><br><div>P178    成长，靠的不是聪明。成功，靠的也不是聪明。其实，任何人成长的力量，都来自自己的内心，别人、书本以及环境，都只是起到启发的作用。</div><br><div>P181    用80%的时间思考，20%的时间做事。</div><br><div>P183    做20%的事情，创造80%的产出。</div><br><div>P202    生活离不开情绪，它是对外面世界正常的心理反应，我们要做的只是不让自己成为情绪的奴隶，不能让那些消极的心境左右我们的生活。</div><br><div>P209    原来不是所有的东西都要靠学习才会的，有些东西当你站在某个高度、某个角度的时候，自然就会了；当你成长到一定程度的时候，就自然地成熟了。</div><br><div><a href="http://www.wiz.cn/" title="Wiz" target="_blank">通过 Wiz 发布</a></div>]]></content>
     <category scheme="http://zhenghongen.cn/tags/GTD/" term="GTD"/>
     <category scheme="http://zhenghongen.cn/tags/我的读书笔记/" term="我的读书笔记"/>
     <category scheme="http://zhenghongen.cn/tags/时间管理/" term="时间管理"/>
@@ -670,17 +293,15 @@ P27目标是衡量一个人行为的尺度。</p>
     <id>http://zhenghongen.cn/2012/02/18/under-virtualbox4-1-and-debian6-0-install-vboxadditions/</id>
     <published>2012-02-18T04:36:43.000Z</published>
     <updated>2013-07-08T01:53:06.000Z</updated>
-    <content type="html"><![CDATA[<p><span style="color: #000000; font-family: 宋体; font-size: small;">操作系统： Win7
-虚拟机：VirtualBox 4.1.6
-虚拟机系统：debian-6.0.4-i386-DVD-1</span></p>
-<a name="more"></a>
+    <content type="html"><![CDATA[<p><span style="color: #000000; font-family: 宋体; font-size: small;">操作系统： Win7<br>虚拟机：VirtualBox 4.1.6<br>虚拟机系统：debian-6.0.4-i386-DVD-1</span></p>
+<a id="more"></a>
 
 <p><span style="color: #000000; font-family: 宋体; font-size: small;">在虚拟机中装完Debian6.0后，桌面分辨率默认为800*600，需要调整分辨率，这就需要安装VirtualBox的增强功能。按照如下步骤操作：</span></p>
-<p><span style="color: #000000; font-family: 宋体; font-size: small;">1、进入虚拟机的Debian系统，用新立得软件包管理器，安装以下软件包：gcc, make, linux-headers-<span style="color: #00b0f0;">kernel_version</span>，关于内核版本可以在终端下通过<a href="http://www.linuxso.com/command/"><span style="text-decoration: underline;">命令</span></a>“<a href="http://www.linuxso.com/command/uname.html"><span style="text-decoration: underline;">uname</span></a> -r”获得。</span></p>
-<p><span style="color: #000000; font-family: 宋体; font-size: small;">2、在虚拟机运行窗口上，点菜单“设备”---&gt;“安装增强功能”，系统会自动加载VBOXADDITIONS_4.1.4镜像，执行自动运行会提示自动运行软件出错</span></p>
-<p><span style="color: #000000; font-family: 宋体; font-size: small;">3、打开Debian系统“应用程序”---&gt;“附件”---&gt;“Root 终端”，输入 <a href="http://www.linuxso.com/command/cd.html"><span style="text-decoration: underline;">cd</span></a> /media/cdrom，这是为了更改当前目录为cdrom下，然后接着输入 <a href="http://www.linuxso.com/command/su.html"><span style="text-decoration: underline;">su</span></a>do sh ./VBoxLinuxA<a href="http://www.linuxso.com/command/dd.html"><span style="text-decoration: underline;">dd</span></a>itions.run</span></p>
+<p><span style="color: #000000; font-family: 宋体; font-size: small;">1、进入虚拟机的Debian系统，用新立得软件包管理器，安装以下软件包：gcc, make, linux-headers-<span style="color: #00b0f0;">kernel_version</span>，关于内核版本可以在终端下通过<a href="http://www.linuxso.com/command/" target="_blank"><span style="text-decoration: underline;">命令</span></a>“<a href="http://www.linuxso.com/command/uname.html" target="_blank"><span style="text-decoration: underline;">uname</span></a> -r”获得。</span></p>
+<p><span style="color: #000000; font-family: 宋体; font-size: small;">2、在虚拟机运行窗口上，点菜单“设备”—-&gt;“安装增强功能”，系统会自动加载VBOXADDITIONS_4.1.4镜像，执行自动运行会提示自动运行软件出错</span></p>
+<p><span style="color: #000000; font-family: 宋体; font-size: small;">3、打开Debian系统“应用程序”—-&gt;“附件”—-&gt;“Root 终端”，输入 <a href="http://www.linuxso.com/command/cd.html" target="_blank"><span style="text-decoration: underline;">cd</span></a> /media/cdrom，这是为了更改当前目录为cdrom下，然后接着输入 <a href="http://www.linuxso.com/command/su.html" target="_blank"><span style="text-decoration: underline;">su</span></a>do sh ./VBoxLinuxA<a href="http://www.linuxso.com/command/dd.html" target="_blank"><span style="text-decoration: underline;">dd</span></a>itions.run</span></p>
 <p><span style="color: #000000; font-family: 宋体; font-size: small;">至此，增强软件包安装完毕，重启虚拟机即可自动调整窗口大小及分辨率，还能实现鼠标在虚拟OS和宿主OS之间自由切换。</span></p>
-<div><a href="http://www.wiz.cn/" title="Wiz">通过 Wiz 发布</a></div>]]></content>
+<div><a href="http://www.wiz.cn/" title="Wiz" target="_blank">通过 Wiz 发布</a></div>]]></content>
     <category scheme="http://zhenghongen.cn/tags/Debian/" term="Debian"/>
     <category scheme="http://zhenghongen.cn/tags/VirtualBox/" term="VirtualBox"/>
     <category scheme="http://zhenghongen.cn/categories/Linux学习/" term="Linux学习"/>
@@ -691,38 +312,7 @@ P27目标是衡量一个人行为的尺度。</p>
     <id>http://zhenghongen.cn/2012/01/20/object-oriented-analysis-and-design-with-applications-chapter-two-reading-notes/</id>
     <published>2012-01-20T06:14:33.000Z</published>
     <updated>2013-07-08T01:53:06.000Z</updated>
-    <content type="html"><![CDATA[<div><strong>第二章</strong></div>
-<div>P20 对象模型包括抽象、封装、模块化、层次结构、类型、并发和持久等原则。</div>
-<div>P25 如果过程和函数是动词，数据是名词，那么面向过程语言的程序就是围绕动词组织的，面向对象的程序就是围绕名次组织的。</div>
-<div>P27 在对象模型中，重点在于灵活地刻画物理系统或抽象系统的组件，用一个程序系统来建模...</div>
-<a name="more"></a>
-<div>P29 面向对象编程是一种实现的方法，在这种方法中，程序被组织成许多组相互协作的对象，每个对象代表某个类的一个实例，而类则属于一个通过继承关系行程的层次结构。</div>
-<div>P29 面向对象设计是一种设计方法，包括面向对象分解的过程和一种表示法，这种表示法用于展现被设计系统的逻辑模型和物理模型、静态模型和动态模型。</div>
-<div>P30 面向对象分析是一种分析方法，这种方法利用从问题域的词汇中找到的类和对象来分析需求。</div>
-<div>P30 5种主要的编程风格：</div>
-<div>（1）面向过程 算法；</div>
-<div>（2）面向对象 类和对象；</div>
-<div>（3）面向逻辑 目标，通常以谓词演算的方式表示；</div>
-<div>（4）面向规则 如果--那么规则；</div>
-<div>（5）面向约束 不变的关系。</div>
-<div>P31 抽象描述了一个对象的基本特征，可以将这个对象与所有其他类型的对象区分开来，因此提供了清晰定义的概念边界，它与观察者的视角有关。</div>
-<div>P36 封装是一个过程，它分隔构成抽象的结构和行为的元素。封装的作用是分离抽象的概念接口及其实现。</div>
-<div>P40 模块化是一个系统的属性，这个系统被分解为一组高内聚、低耦合的模块。</div>
-<div>P41 层次结构是抽象的一种分级或排序。</div>
-<div>P46 类型是关于一个对象的类的强制规定，这样一来，不同类型的对象不能够互换使用，或者至少他们的互换使用受到非常严格的限制。</div>
-<div>P48 并发是一种属性，它区分了主动对象和非主动对象。</div>
-<div>P51 持久是对象的一种属性，利用这种属性，对象跨越时间（例如，当对象的创建不存在的时候，对象仍然存在）和空间（例如，对象的位置从它被创建的地址空间移开）而存在。</div>
-<div>P52 小结</div>
-<div>·软件工程的成熟导致了面向对象分析、设计和编程方法的形成，所有这些技术都是为了解决大规模编程的问题。</div>
-<div>·有一些不同的编程模式：面向过程的、面向对象的、面向逻辑的、面向规则的、面向约束的。</div>
-<div>·抽象描述了一个对象的基本特征，可以将这个对象与所有其他类型的对象区分开来，因此提供了清晰定义的概念边界，它与观察者的视角有关。
-<div>·封装是一个过程，它分隔构成抽象的结构和行为的元素。封装的作用是分离抽象的概念接口及其实现。</div>
-<div>·层次结构是抽象的一种分级或排序。</div>
-<div>·类型是关于一个对象的类的强制规定，这样一来，不同类型的对象不能够互换使用，或者至少他们的互换使用受到非常严格的限制。</div>
-<div>·并发是一种属性，它区分了主动对象和非主动对象。</div>
-<div>·持久是对象的一种属性，利用这种属性，对象跨越时间和空间而存在。</div>
-</div>
-<div><a href="http://www.wiz.cn/" title="Wiz">通过 Wiz 发布</a></div>]]></content>
+    <content type="html"><![CDATA[<div><strong>第二章</strong></div><br><div>P20 对象模型包括抽象、封装、模块化、层次结构、类型、并发和持久等原则。</div><br><div>P25 如果过程和函数是动词，数据是名词，那么面向过程语言的程序就是围绕动词组织的，面向对象的程序就是围绕名次组织的。</div><br><div>P27 在对象模型中，重点在于灵活地刻画物理系统或抽象系统的组件，用一个程序系统来建模…</div><br><a id="more"></a><br><div>P29 面向对象编程是一种实现的方法，在这种方法中，程序被组织成许多组相互协作的对象，每个对象代表某个类的一个实例，而类则属于一个通过继承关系行程的层次结构。</div><br><div>P29 面向对象设计是一种设计方法，包括面向对象分解的过程和一种表示法，这种表示法用于展现被设计系统的逻辑模型和物理模型、静态模型和动态模型。</div><br><div>P30 面向对象分析是一种分析方法，这种方法利用从问题域的词汇中找到的类和对象来分析需求。</div><br><div>P30 5种主要的编程风格：</div><br><div>（1）面向过程 算法；</div><br><div>（2）面向对象 类和对象；</div><br><div>（3）面向逻辑 目标，通常以谓词演算的方式表示；</div><br><div>（4）面向规则 如果—那么规则；</div><br><div>（5）面向约束 不变的关系。</div><br><div>P31 抽象描述了一个对象的基本特征，可以将这个对象与所有其他类型的对象区分开来，因此提供了清晰定义的概念边界，它与观察者的视角有关。</div><br><div>P36 封装是一个过程，它分隔构成抽象的结构和行为的元素。封装的作用是分离抽象的概念接口及其实现。</div><br><div>P40 模块化是一个系统的属性，这个系统被分解为一组高内聚、低耦合的模块。</div><br><div>P41 层次结构是抽象的一种分级或排序。</div><br><div>P46 类型是关于一个对象的类的强制规定，这样一来，不同类型的对象不能够互换使用，或者至少他们的互换使用受到非常严格的限制。</div><br><div>P48 并发是一种属性，它区分了主动对象和非主动对象。</div><br><div>P51 持久是对象的一种属性，利用这种属性，对象跨越时间（例如，当对象的创建不存在的时候，对象仍然存在）和空间（例如，对象的位置从它被创建的地址空间移开）而存在。</div><br><div>P52 小结</div><br><div>·软件工程的成熟导致了面向对象分析、设计和编程方法的形成，所有这些技术都是为了解决大规模编程的问题。</div><br><div>·有一些不同的编程模式：面向过程的、面向对象的、面向逻辑的、面向规则的、面向约束的。</div><br><div>·抽象描述了一个对象的基本特征，可以将这个对象与所有其他类型的对象区分开来，因此提供了清晰定义的概念边界，它与观察者的视角有关。<br><div>·封装是一个过程，它分隔构成抽象的结构和行为的元素。封装的作用是分离抽象的概念接口及其实现。</div><br><div>·层次结构是抽象的一种分级或排序。</div><br><div>·类型是关于一个对象的类的强制规定，这样一来，不同类型的对象不能够互换使用，或者至少他们的互换使用受到非常严格的限制。</div><br><div>·并发是一种属性，它区分了主动对象和非主动对象。</div><br><div>·持久是对象的一种属性，利用这种属性，对象跨越时间和空间而存在。</div><br></div><br><div><a href="http://www.wiz.cn/" title="Wiz" target="_blank">通过 Wiz 发布</a></div>]]></content>
     <category scheme="http://zhenghongen.cn/tags/我的读书笔记/" term="我的读书笔记"/>
     <category scheme="http://zhenghongen.cn/tags/面向对象/" term="面向对象"/>
     <category scheme="http://zhenghongen.cn/categories/读书笔记/" term="读书笔记"/>
@@ -733,33 +323,7 @@ P27目标是衡量一个人行为的尺度。</p>
     <id>http://zhenghongen.cn/2012/01/16/object-oriented-analysis-and-design-with-applications-chapter-one-reading-notes/</id>
     <published>2012-01-16T05:56:35.000Z</published>
     <updated>2013-07-08T01:53:06.000Z</updated>
-    <content type="html"><![CDATA[<div><strong>第一章</strong></div>
-<div>P5 Brooks曾指出：“爱因斯坦认为自然界必定存在着简单的解释，因为上帝不是反复无常或随心所欲的。软件工程师没有这样的信仰来提供安慰。许多必须控制的复杂性是随心所欲的复杂性”</div>
-<div>P5-8问题复杂性的4个原因：</div>
-<div>1.问题域的复杂性</div>
-<div>2.管理开发过程的困难性</div>
-<div>3.软件中随处可能出现的灵活性</div>
-<div>4.描述离散系统行为的问题</div>
-<div><a name="more"></a></div>
-<div>P8-P10复杂系统的5个属性：</div>
-<div>1.层次结构</div>
-<div>复杂性常常以层次结构的形式存在。复杂的系统由一些相关的子系统组成，这些子系统又有自己的系统，如此下去，直到达到某种最低层次的基本组件。</div>
-<div>2.相对本原</div>
-<div>选择那些作为系统的基础组件相对来说比较随意，这在很大程度上取决于系统观察者的判断。</div>
-<div>3.分离关注</div>
-<div>组件内的联系通常比组件间的联系更强。这一事实实际上将组件中高频率的动作（涉及组件的内部结构）和低频率的动作（涉及组件间的相互作用）分离开来。</div>
-<div>4.共同模式</div>
-<div>层次结构通常只是少数不同类型的子系统按照不同的组合和安排方式构成的。</div>
-<div>5.稳定的中间形式</div>
-<div>如果存在稳定的中间形式，从简单系统到复杂系统的演变将更快。</div>
-<div>P19 小结</div>
-<div>·软件本质上是复杂的，软件系统的复杂性常常超出了人类智能的范围。</div>
-<div>·软件开发团队的任务就是制造出简单的假象。</div>
-<div>·复杂性常常以层次结构的形式表现出来，简历复杂系统的“是一种”和“组成部分”层次结构模型是有意义的。</div>
-<div>·复杂系统通常是从一些稳定的中间状态演进而来的。</div>
-<div>·人类的认识有一些基本的限制因素，我们可以通过分解、抽象和层次结构来克服这些限制的。</div>
-<div>·复杂系统可以从事物或处理过程的角度来分析，采用面向对象的分析有一些令人感兴趣的理由。在这种方法中，将世界看作是一组有意义的对象进行协作，实现某种高级的行为。</div>
-<div>·面向对象分析和设计的方法实现了面向对象分解。面向对象的设计采用了一套表示法和过程来构造复杂软件系统，提供了丰富的模型，可以通过这些模型来阐述目标系统的不同方面。</div>]]></content>
+    <content type="html"><![CDATA[<div><strong>第一章</strong></div><br><div>P5 Brooks曾指出：“爱因斯坦认为自然界必定存在着简单的解释，因为上帝不是反复无常或随心所欲的。软件工程师没有这样的信仰来提供安慰。许多必须控制的复杂性是随心所欲的复杂性”</div><br><div>P5-8问题复杂性的4个原因：</div><br><div>1.问题域的复杂性</div><br><div>2.管理开发过程的困难性</div><br><div>3.软件中随处可能出现的灵活性</div><br><div>4.描述离散系统行为的问题</div><br><div><a id="more"></a></div><br><div>P8-P10复杂系统的5个属性：</div><br><div>1.层次结构</div><br><div>复杂性常常以层次结构的形式存在。复杂的系统由一些相关的子系统组成，这些子系统又有自己的系统，如此下去，直到达到某种最低层次的基本组件。</div><br><div>2.相对本原</div><br><div>选择那些作为系统的基础组件相对来说比较随意，这在很大程度上取决于系统观察者的判断。</div><br><div>3.分离关注</div><br><div>组件内的联系通常比组件间的联系更强。这一事实实际上将组件中高频率的动作（涉及组件的内部结构）和低频率的动作（涉及组件间的相互作用）分离开来。</div><br><div>4.共同模式</div><br><div>层次结构通常只是少数不同类型的子系统按照不同的组合和安排方式构成的。</div><br><div>5.稳定的中间形式</div><br><div>如果存在稳定的中间形式，从简单系统到复杂系统的演变将更快。</div><br><div>P19 小结</div><br><div>·软件本质上是复杂的，软件系统的复杂性常常超出了人类智能的范围。</div><br><div>·软件开发团队的任务就是制造出简单的假象。</div><br><div>·复杂性常常以层次结构的形式表现出来，简历复杂系统的“是一种”和“组成部分”层次结构模型是有意义的。</div><br><div>·复杂系统通常是从一些稳定的中间状态演进而来的。</div><br><div>·人类的认识有一些基本的限制因素，我们可以通过分解、抽象和层次结构来克服这些限制的。</div><br><div>·复杂系统可以从事物或处理过程的角度来分析，采用面向对象的分析有一些令人感兴趣的理由。在这种方法中，将世界看作是一组有意义的对象进行协作，实现某种高级的行为。</div><br><div>·面向对象分析和设计的方法实现了面向对象分解。面向对象的设计采用了一套表示法和过程来构造复杂软件系统，提供了丰富的模型，可以通过这些模型来阐述目标系统的不同方面。</div>]]></content>
     <category scheme="http://zhenghongen.cn/tags/我的读书笔记/" term="我的读书笔记"/>
     <category scheme="http://zhenghongen.cn/tags/面向对象/" term="面向对象"/>
     <category scheme="http://zhenghongen.cn/categories/读书笔记/" term="读书笔记"/>
@@ -770,7 +334,7 @@ P27目标是衡量一个人行为的尺度。</p>
     <id>http://zhenghongen.cn/2012/01/13/i-recently-object-oriented-analysis-and-design-with-applications/</id>
     <published>2012-01-13T07:07:08.000Z</published>
     <updated>2013-07-08T01:53:06.000Z</updated>
-    <content type="html"><![CDATA[<p>《面向对象分析与设计(第3版)》是UML创始人Grady Booch的代表作之一，书中介绍的概念都基于牢固的理论基础。同时，《面向对象分析与设计(第3版)》又是一本注重实效的书，面向架构师和软件开发者等软件工程实践者的实际需要。《面向对象分析与设计(第3版)》通过大量例子说明了基本概念，解释了方法，并展示了在不同领域的成功应用。全书分为理论和应用两部分。理论部分深刻剖析了面向对象分析与设计(OOAD)的概念和方法。<a name="more"></a>应用部分连续列出了5个不同类型、不同领域的应用，描述如何从初始阶段到移交阶段将OOAD理论和方法应用到项目中。应用部分所涉及的领域包括系统架构、数据获取、密码分析、控制系统和Web开发，还给出了一些关于重要问题的有效建议，包括分类、实现策略和高性价比的项目管理。书中的表示法采用最新的UML 2.0，因此《面向对象分析与设计(第3版)》是学习UML 2.0不可多得的参考书。《面向对象分析与设计(第3版)》作者基于长期丰富的经验，提出了改进的对象开发方法，用于解决系统和软件开发者面临的复杂问题，非常适合实际系统和软件的开发者、系统分析师或构架师、项目经理阅读。《面向对象分析与设计(第3版)》主要阐述了软件开发的方法，也可以作为高等院校软件工程和高级编程课程的教材使用。</p>
+    <content type="html"><![CDATA[<p>《面向对象分析与设计(第3版)》是UML创始人Grady Booch的代表作之一，书中介绍的概念都基于牢固的理论基础。同时，《面向对象分析与设计(第3版)》又是一本注重实效的书，面向架构师和软件开发者等软件工程实践者的实际需要。《面向对象分析与设计(第3版)》通过大量例子说明了基本概念，解释了方法，并展示了在不同领域的成功应用。全书分为理论和应用两部分。理论部分深刻剖析了面向对象分析与设计(OOAD)的概念和方法。<a id="more"></a>应用部分连续列出了5个不同类型、不同领域的应用，描述如何从初始阶段到移交阶段将OOAD理论和方法应用到项目中。应用部分所涉及的领域包括系统架构、数据获取、密码分析、控制系统和Web开发，还给出了一些关于重要问题的有效建议，包括分类、实现策略和高性价比的项目管理。书中的表示法采用最新的UML 2.0，因此《面向对象分析与设计(第3版)》是学习UML 2.0不可多得的参考书。《面向对象分析与设计(第3版)》作者基于长期丰富的经验，提出了改进的对象开发方法，用于解决系统和软件开发者面临的复杂问题，非常适合实际系统和软件的开发者、系统分析师或构架师、项目经理阅读。《面向对象分析与设计(第3版)》主要阐述了软件开发的方法，也可以作为高等院校软件工程和高级编程课程的教材使用。</p>
 <p>&nbsp;</p>
 <p>PS：这两天已经开始看了，虽然只看了第一章，但相比与以前看的面向对象的书，觉得这本书不论是文笔还是配图都是我最容易接受的，也最喜欢的，以后会贴出书摘。</p>
 ]]></content>
@@ -785,23 +349,19 @@ P27目标是衡量一个人行为的尺度。</p>
     <content type="html"><![CDATA[<p>以前使用的是host1free的免费空间，当然啦，访问速度实在是不敢恭维，不过又没找到合适的空间转移，也就没有换了。</p>
 <p>原本注册这个空间自带的域名为moyuiq.host898.net，我注册了hongen.tk域名，设置为自动转向。</p>
 <p>这样设置有一个问题就是，不管我点击哪一篇文章，地址栏永远都是hongen.tk，不会改变。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <p>经过咨询 锋辉 童鞋后，当然，在他的帮助下，终于把域名转向设置好了。</p>
 <p>首先：</p>
 <p>1.到host1free</p>
-<p><pre>登录之后，点击website control--点击你的二级域名--Domain Setup--Add Another Domain，</pre></p>
-<p><pre>然后在Domain处输入你的域名，点击create，之后会自动host1free会自动生成你绑定域名的a记录那些。</pre>
-<img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/01/wpid-d2649b925e2cf3200aa981359a577e37_11-300x331.png" alt=""></p>
+<p><pre>登录之后，点击website control—点击你的二级域名—Domain Setup—Add Another Domain，</pre></p>
+<p><pre>然后在Domain处输入你的域名，点击create，之后会自动host1free会自动生成你绑定域名的a记录那些。</pre><br><img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/01/wpid-d2649b925e2cf3200aa981359a577e37_11-300x331.png" alt=""></p>
 <p><pre>2.到dot.tk</pre></p>
-<p><pre>修改域名信息-》使用DOT TK的免费DNS服务器，添加A记录，ip地址通过host1free后台的DNS Mangement查看到。</pre>
-<img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/01/wpid-d2649b925e2cf3200aa981359a577e37_2-300x1931.png" alt=""></p>
-<p><pre>3.登录FTP，在新建的hongen.tk域名文件下，把原域名里的wordpress文件夹拷贝过来</pre>
-<img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/01/wpid-d2649b925e2cf3200aa981359a577e37_3-300x1011.png" alt=""></p>
+<p><pre>修改域名信息-》使用DOT TK的免费DNS服务器，添加A记录，ip地址通过host1free后台的DNS Mangement查看到。</pre><br><img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/01/wpid-d2649b925e2cf3200aa981359a577e37_2-300x1931.png" alt=""></p>
+<p><pre>3.登录FTP，在新建的hongen.tk域名文件下，把原域名里的wordpress文件夹拷贝过来</pre><br><img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/01/wpid-d2649b925e2cf3200aa981359a577e37_3-300x1011.png" alt=""></p>
 <p><pre>4.登录wordpress后台，设置-》常规，修改wordpress地址 和站点地址。</pre></p>
-<p><pre></pre>
-<img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/01/wpid-d2649b925e2cf3200aa981359a577e37_4-300x1941.png" alt=""></p>
-<div><a href="http://www.wiz.cn/" title="Wiz">通过 Wiz 发布</a></div>]]></content>
+<p><pre></pre><br><img src="http://moyuqi-wordpress.stor.sinaapp.com/uploads/2012/01/wpid-d2649b925e2cf3200aa981359a577e37_4-300x1941.png" alt=""></p>
+<div><a href="http://www.wiz.cn/" title="Wiz" target="_blank">通过 Wiz 发布</a></div>]]></content>
     <category scheme="http://zhenghongen.cn/tags/host1free/" term="host1free"/>
     <category scheme="http://zhenghongen.cn/tags/tk/" term="tk"/>
     <category scheme="http://zhenghongen.cn/tags/域名/" term="域名"/>
