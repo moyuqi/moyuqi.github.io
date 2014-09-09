@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>《面向对象分析与设计》第二章·读书笔记 | 陌羽蕲moyuqi'凡凌轩</title>
+  <meta name="author" content="MoYuQi">
+  
+  <meta name="description" content="关注前端开发与交互，知识管理，时间管理，思维导图。喜欢JavaScript,jQuery,也爱ExtJs,Bootstrap。">
+  
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+
+  <meta property="og:title" content="《面向对象分析与设计》第二章·读书笔记"/>
+  <meta property="og:site_name" content="陌羽蕲moyuqi'凡凌轩"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="陌羽蕲moyuqi'凡凌轩" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/amui.all.min.css" media="screen" type="text/css">
+   <link rel="stylesheet" href="/css/app.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+    <nav>
+    <a id="blog-nav-button" href="javascript:void(0)" class="am-btn am-btn-primary"
+       data-am-collapse="{target: '#collapse-nav'}">
+        <i class="am-menu-toggle-icon am-icon-bars"></i>
+    </a>
+    <ul id="collapse-nav" class=" am-nav am-collapse blog-nav">
+       <!-- <li class="am-active"><a href="index.html"><i class="am-icon-home "></i><span
+                class="blog-nav-text">首页</span></a></li>
+        <li><a href="archive.html"><i class="am-icon-archive"></i><span class="blog-nav-text">文章</span></a></li>
+        <li><a href="tags.html"><i class="am-icon-tag"></i><span class="blog-nav-text">分类</span></a></li>
+        <li><a href="links.html"><i class="am-icon-link"></i><span class="blog-nav-text">连接</span></a></li>   -->
+
+        
+           <li class=""><a href="/"><i class="am-icon-home"></i><span class="blog-nav-text">Home</span></a></li>
+        
+           <li class=""><a href="/archives"><i class="am-icon-archive"></i><span class="blog-nav-text">Archives</span></a></li>
+        
+    </ul>
+</nav>
+    <div class="am-container blog-container"><article class="am-article blog-article post">
+    <div class="am-article-hd">
+        <h3 class="am-article-title blog-title">
+    <span class="an-fl blog-title-fl">
+    
+      
+       《面向对象分析与设计》第二章·读书笔记
+      
+    
+    </span>
+    <span class="am-fr am-kai blog-title-fr">
+    <time datetime="2012-01-20T06:14:33.000Z"><a href="/2012/01/20/object-oriented-analysis-and-design-with-applications-chapter-two-reading-notes/">2012/01/20</a></time>
+    </span>
+</h3>
+        <h4 class="am-article-meta blog-article-meta">
+           
+  
+  <div class="categories">
+    <i class="am-icon-star"></i> 分类:  <a class="am-badge am-badge-success" href="/categories/读书笔记/">读书笔记</a>
+  </div>
+
+           
+  
+  <div class="tags">
+    <i class="am-icon-tag"></i> 标签:  <a class="am-badge am-badge-primary" href="/tags/我的读书笔记/">我的读书笔记</a>&nbsp;<a class="am-badge am-badge-primary" href="/tags/面向对象/">面向对象</a>
+  </div>
+
+
+        </h4>
+    </div>
+    <div class="am-article-bd">
+        
+            
+            <div><div><strong>第二章</strong></div><br><div>P20 对象模型包括抽象、封装、模块化、层次结构、类型、并发和持久等原则。</div><br><div>P25 如果过程和函数是动词，数据是名词，那么面向过程语言的程序就是围绕动词组织的，面向对象的程序就是围绕名次组织的。</div><br><div>P27 在对象模型中，重点在于灵活地刻画物理系统或抽象系统的组件，用一个程序系统来建模…</div><br><a id="more"></a><br><div>P29 面向对象编程是一种实现的方法，在这种方法中，程序被组织成许多组相互协作的对象，每个对象代表某个类的一个实例，而类则属于一个通过继承关系行程的层次结构。</div><br><div>P29 面向对象设计是一种设计方法，包括面向对象分解的过程和一种表示法，这种表示法用于展现被设计系统的逻辑模型和物理模型、静态模型和动态模型。</div><br><div>P30 面向对象分析是一种分析方法，这种方法利用从问题域的词汇中找到的类和对象来分析需求。</div><br><div>P30 5种主要的编程风格：</div><br><div>（1）面向过程 算法；</div><br><div>（2）面向对象 类和对象；</div><br><div>（3）面向逻辑 目标，通常以谓词演算的方式表示；</div><br><div>（4）面向规则 如果—那么规则；</div><br><div>（5）面向约束 不变的关系。</div><br><div>P31 抽象描述了一个对象的基本特征，可以将这个对象与所有其他类型的对象区分开来，因此提供了清晰定义的概念边界，它与观察者的视角有关。</div><br><div>P36 封装是一个过程，它分隔构成抽象的结构和行为的元素。封装的作用是分离抽象的概念接口及其实现。</div><br><div>P40 模块化是一个系统的属性，这个系统被分解为一组高内聚、低耦合的模块。</div><br><div>P41 层次结构是抽象的一种分级或排序。</div><br><div>P46 类型是关于一个对象的类的强制规定，这样一来，不同类型的对象不能够互换使用，或者至少他们的互换使用受到非常严格的限制。</div><br><div>P48 并发是一种属性，它区分了主动对象和非主动对象。</div><br><div>P51 持久是对象的一种属性，利用这种属性，对象跨越时间（例如，当对象的创建不存在的时候，对象仍然存在）和空间（例如，对象的位置从它被创建的地址空间移开）而存在。</div><br><div>P52 小结</div><br><div>·软件工程的成熟导致了面向对象分析、设计和编程方法的形成，所有这些技术都是为了解决大规模编程的问题。</div><br><div>·有一些不同的编程模式：面向过程的、面向对象的、面向逻辑的、面向规则的、面向约束的。</div><br><div>·抽象描述了一个对象的基本特征，可以将这个对象与所有其他类型的对象区分开来，因此提供了清晰定义的概念边界，它与观察者的视角有关。<br><div>·封装是一个过程，它分隔构成抽象的结构和行为的元素。封装的作用是分离抽象的概念接口及其实现。</div><br><div>·层次结构是抽象的一种分级或排序。</div><br><div>·类型是关于一个对象的类的强制规定，这样一来，不同类型的对象不能够互换使用，或者至少他们的互换使用受到非常严格的限制。</div><br><div>·并发是一种属性，它区分了主动对象和非主动对象。</div><br><div>·持久是对象的一种属性，利用这种属性，对象跨越时间和空间而存在。</div><br></div><br><div><a href="http://www.wiz.cn/" title="Wiz" target="_blank">通过 Wiz 发布</a></div></div>
+        
+        <div class="am-cf"></div>
+        
+            <!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=0" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+        
+        <div class="am-cf"></div>
+        <hr class="am-article-divider blog-article-hr">
+    </div>
+    <div class="am-cf"></div>
+</article>
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+    var duoshuoQuery = {short_name: "moyuqi"};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- Duoshuo Comment END -->
+</div>
+    <footer class="am-footer am-footer-default blog-footer">
+    <div class="am-footer-miscs ">
+        <p>
+            
+              &copy; 2014 MoYuQi
+              
+               <span class="am-footer-divider">|</span> <a href="/sitemap.xml">网站地图</a>
+        <p>
+            <span>Blog powered by <strong><a href="http://zespia.tw/hexo/zh-CN/">Hexo</a></strong></span>
+            <span>
+                <span class="am-footer-divider">|</span> Theme <strong><a
+                        href="http://zhenghongen.cn/hexo-theme-AmHexo">AmHexo</a></strong>
+            </span>
+            <span><span class="am-footer-divider">|</span> Desgined by<strong><a href="http://www.zhenghongen.cn/">MoYuQi</a></strong></span>
+        </p>
+    </div>
+</footer>
+    <script src="/js/zepto.min.js"></script>
+<script src="/js/amui.min.js"></script>
+<script src="/js/amui.widget.helper.min.js"></script>
+<script src="/js/app.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+/* Write your styles */
+
+@media only screen {
+    .blog-nav {
+
+    }
+
+    .blog-nav li a {
+        border: 1px solid;
+    }
+
+    .blog-nav-text {
+        padding: 0px 10px;
+        display: inline;
+    }
+
+    .blog-index {
+        margin-top: 40px;
+        margin-bottom: auto;
+        vertical-align: middle;
+    }
+
+    .blog-article {
+        margin-top: 10px;
+    }
+
+    .blog-title {
+        margin: 10px 0 20px 0;
+    }
+
+    .blog-title > span > a, .blog-title > span ol li:first-child {
+        border-left: 3px solid #0e90d2;
+        bottom: 8px;
+        left: 2px;
+        top: 8px;
+        padding-left: 5px;
+    }
+
+    .blog-title > span ol {
+        padding-left: 0em;
+        padding-bottom: 0.1em;
+    }
+
+    .blog-title-fl {
+
+    }
+
+    .blog-title-fr {
+        color: gray;
+    }
+
+    .blog-article-hr {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
+
+    .blog-article-meta {
+        font-size: 14px;
+        margin: 10px 0 20px 0;
+    }
+
+    .blog-tags {
+
+    }
+
+    .blog-tags a {
+        margin-top: 0.5em;
+    }
+
+    .blog-footer {
+        margin-top: 1em;
+        border-top: 1px solid #0e90d2;
+    }
+
+    .blog-footer p {
+        margin: 0 1em;
+    }
+}
+
+@media only screen and (min-width: 641px) {
+    .blog-nav-text {
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+    .blog-nav {
+        display: block;
+        position: fixed;
+        padding: 0em 1em;
+    }
+
+    .blog-nav li a {
+        max-width: 120px;
+        padding: 0.4em 0.4em;
+    }
+
+    .blog-nav-text {
+        /*display: none;*/
+    }
+
+    #blog-nav-button {
+        display: none;
+    }
+
+    .blog-container{
+        min-height: 580px;
+    }
+}
+
